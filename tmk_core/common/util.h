@@ -22,10 +22,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 // convert to L string
 #define LSTR(s) XLSTR(s)
-#define XLSTR(s) L## #s
+#define XLSTR(s) L ## #s
 // convert to string
 #define STR(s) XSTR(s)
 #define XSTR(s) #s
+
 
 uint8_t bitpop(uint8_t bits);
 uint8_t bitpop16(uint16_t bits);

@@ -23,10 +23,12 @@ enum custom_macros {
 
   const uint16_t PROGMEM fn_actions[] = {
       [0] = ACTION_LAYER_TAP_KEY(_LOWER, KC_SPC),    //Hold for momentary Lower layer, Tap for Space,
+      [1] = ACTION_LAYER_MOMENTARY(_MOUSE)           //Hold for momentary MOUSE
+
    };
 
 #define SPC_LW FUNC(0)
-#define MSE MO(_MOUSE)
+#define MSE FUNC(1)
 #define PIPE M(R_PIPE)
 #define POINT M(R_POINT)
 

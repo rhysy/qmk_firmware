@@ -1,4 +1,5 @@
-# NIU Mini
+NIU Mini
+===
 
 ![NIU Mini](https://cdn.shopify.com/s/files/1/1473/3902/files/40__01.jpg)
 
@@ -10,10 +11,6 @@ Hardware Availability: [KBDFans](https://kbdfans.myshopify.com/products/niu-mini
 
 Make example for this keyboard (after setting up your build environment):
 
-    make niu_mini:default
+    make niu_mini:default:dfu
 
-Flashing example for this keyboard ([using the command line](https://docs.qmk.fm/#/newbs_flashing?id=flash-your-keyboard-from-the-command-line)):
-
-    make niu_mini:default:flash
-
-See the [build environment setup](https://docs.qmk.fm/#/getting_started_build_tools) and the [make instructions](https://docs.qmk.fm/#/getting_started_make_guide) for more information. Brand new to QMK? Start with our [Complete Newbs Guide](https://docs.qmk.fm/#/newbs).
+See [build environment setup](https://docs.qmk.fm/#/getting_started_build_tools) then the [make instructions](https://docs.qmk.fm/#/getting_started_make_guide) for more information.

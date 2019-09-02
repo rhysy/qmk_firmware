@@ -1,4 +1,4 @@
-### 2  Standard - ISO
+﻿### 2  Standard - ISO
 The same as the standard keymap, but with additional ISO keys.
 
 

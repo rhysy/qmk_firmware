@@ -23,4 +23,5 @@
 extern const uint8_t resource_lcd_logo[];
 #endif
 
+
 #endif /* QUANTUM_VISUALIZER_RESOURCES_RESOURCES_H_ */

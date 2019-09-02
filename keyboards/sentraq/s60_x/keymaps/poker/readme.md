@@ -1,4 +1,4 @@
-### 3  Poker
+﻿### 3  Poker
 [keymap_poker](../poker/readme.md) emulates original Poker layers
 while both [keymap_poker_bit](../poker_bit/readme.md) and [keymap_poker_set](../poker_set/readme.md) implements same layout in different way and they fix a minor issue of original Poker and enhance arrow keys.
 

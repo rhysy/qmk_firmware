@@ -3,9 +3,10 @@
 #include "mbed.h"
 #include "mbed/xprintf.h"
 
-#define STRING_STACK_LIMIT 120
 
-// TODO
+#define STRING_STACK_LIMIT    120
+
+//TODO
 int __xprintf(const char* format, ...) { return 0; }
 
 #if 0

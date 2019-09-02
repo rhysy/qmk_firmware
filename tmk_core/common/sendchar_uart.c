@@ -17,7 +17,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "uart.h"
 #include "sendchar.h"
 
-int8_t sendchar(uint8_t c) {
+
+int8_t sendchar(uint8_t c)
+{
     uart_putchar(c);
     return 0;
 }

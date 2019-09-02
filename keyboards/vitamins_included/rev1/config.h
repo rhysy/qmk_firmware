@@ -16,14 +16,17 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#pragma once
+#ifndef REV1_CONFIG_H
+#define REV1_CONFIG_H
 
 #include "config_common.h"
 
-#define EE_HANDS
-
-/* USB Device descriptor parameters */
+/* USB Device descriptor parameter */
+#define VENDOR_ID       0xBEE5
+#define PRODUCT_ID      0xF33D
 #define DEVICE_VER      0x0001
+#define MANUFACTURER    Duckle29
+#define PRODUCT         Lets Split sockets vitamins included
 #define DESCRIPTION     A split keyboard for the cheapish makers
 
 /* key matrix size */
@@ -77,3 +80,5 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //#define NO_ACTION_ONESHOT
 //#define NO_ACTION_MACRO
 //#define NO_ACTION_FUNCTION
+
+#endif

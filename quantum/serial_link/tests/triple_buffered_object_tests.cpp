@@ -27,16 +27,18 @@ extern "C" {
 #include "serial_link/protocol/triple_buffered_object.h"
 }
 
-struct test_object {
-    uint8_t  state;
+struct test_object{
+    uint8_t state;
     uint32_t buffer[3];
 };
 
 test_object test_object;
 
 class TripleBufferedObject : public testing::Test {
-   public:
-    TripleBufferedObject() { triple_buffer_init((triple_buffer_object_t*)&test_object); }
+public:
+    TripleBufferedObject() {
+        triple_buffer_init((triple_buffer_object_t*)&test_object);
+    }
 };
 
 TEST_F(TripleBufferedObject, writes_and_reads_object) {
@@ -45,7 +47,9 @@ TEST_F(TripleBufferedObject, writes_and_reads_object) {
     EXPECT_EQ(*triple_buffer_read(&test_object), 0x3456ABCC);
 }
 
-TEST_F(TripleBufferedObject, does_not_read_empty) { EXPECT_EQ(triple_buffer_read(&test_object), nullptr); }
+TEST_F(TripleBufferedObject, does_not_read_empty) {
+    EXPECT_EQ(triple_buffer_read(&test_object), nullptr);
+}
 
 TEST_F(TripleBufferedObject, writes_twice_and_reads_object) {
     *triple_buffer_begin_write(&test_object) = 0x3456ABCC;
@@ -58,7 +62,7 @@ TEST_F(TripleBufferedObject, writes_twice_and_reads_object) {
 TEST_F(TripleBufferedObject, performs_another_write_in_the_middle_of_read) {
     *triple_buffer_begin_write(&test_object) = 1;
     triple_buffer_end_write(&test_object);
-    uint32_t* read                           = triple_buffer_read(&test_object);
+    uint32_t* read = triple_buffer_read(&test_object);
     *triple_buffer_begin_write(&test_object) = 2;
     triple_buffer_end_write(&test_object);
     EXPECT_EQ(*read, 1);
@@ -69,7 +73,7 @@ TEST_F(TripleBufferedObject, performs_another_write_in_the_middle_of_read) {
 TEST_F(TripleBufferedObject, performs_two_writes_in_the_middle_of_read) {
     *triple_buffer_begin_write(&test_object) = 1;
     triple_buffer_end_write(&test_object);
-    uint32_t* read                           = triple_buffer_read(&test_object);
+    uint32_t* read = triple_buffer_read(&test_object);
     *triple_buffer_begin_write(&test_object) = 2;
     triple_buffer_end_write(&test_object);
     *triple_buffer_begin_write(&test_object) = 3;
