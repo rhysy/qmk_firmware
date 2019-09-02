@@ -196,6 +196,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 			SEND_STRING(SS_LGUI("v"));
 		}
 		return false;
+	case KC_UNDO:
+		if (record->event.pressed) {
+			SEND_STRING(SS_LGUI("z"));
+		}
+		return false;
 	case BACK:
 		if (record->event.pressed) {
 			SEND_STRING(SS_LGUI(SS_TAP(X_LEFT)));
