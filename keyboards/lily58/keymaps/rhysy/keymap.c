@@ -66,9 +66,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
  * |  F1  |  F2  |  F3  |  F4  |  F5  |  F6  |                    |  F7  |  F8  |  F9  | F10  | F11  | F12  |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |      | PREV | NEXT | !CUT |!COPY |!PASTE|-------.    ,-------|PG UP |  UP  |PG DWN|   +  |   -  |VOL UP|
- * |------+------+------+------+------+------|   [   |    | SLEEP |------+------+------+------+------+------|
- * |      |!PLAY | MUTE |      |      |      |-------|    |-------| LEFT |  DN  |RIGHT |   *  |   =  |VOL DN|
+ * |      | PREV | NEXT | CUT  | COPY |PASTE |-------.    ,-------|PG UP |  UP  |PG DWN|   +  |   -  |VOL UP|
+ * |------+------+------+------+------+------|   [   |    |!SLEEP |------+------+------+------+------+------|
+ * |      | PLAY | MUTE |      |      |      |-------|    |-------| LEFT | DOWN |RIGHT |   *  |   =  |VOL DN|
  * `-----------------------------------------/       /     \      \-----------------------------------------'
  *                   |      |      |      | /Enter  /       \Space \  |      |      |      |
  *                   |      |      |      |/       /         \      \ |      |      |      |
@@ -175,7 +175,22 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       if (record->event.pressed) {
         layer_off(_LOWER);        
       } 
-      break;    
+      break;
+  	case KC_CUT:
+  		if (record->event.pressed) {
+  			SEND_STRING(SS_LGUI("x"));
+  		}
+  		return false;
+	case KC_COPY:
+		if (record->event.pressed) {
+			SEND_STRING(SS_LGUI("c"));
+		}
+		return false;
+	case KC_PSTE:
+		if (record->event.pressed) {
+			SEND_STRING(SS_LGUI("v"));
+		}
+		return false;
   }
   return true;
 }
