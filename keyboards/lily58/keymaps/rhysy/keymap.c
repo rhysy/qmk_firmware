@@ -23,8 +23,8 @@ enum {
 };
 
 //Tap Dance Definitions
-qk_tap_dance_action_t tap_dance_actions[] = {  
-  // Tap once for Dash, twice for Equals	
+qk_tap_dance_action_t tap_dance_actions[] = {
+  // Tap once for Dash, twice for Equals
   [TD_GRV_EQUALS]  = ACTION_TAP_DANCE_DOUBLE(KC_GRV, KC_PEQL),
   // Tap once for Shift, twice for Caps Lock
   [TD_SHIFT_CAPS]  = ACTION_TAP_DANCE_DOUBLE(KC_LSFT, KC_CAPS)
@@ -96,18 +96,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   * |------+------+------+------+------+------|   [   |    |    ]  |------+------+------+------+------+------|
   * | BL-  |BL CYL|BL OFF| N/A  | N/A  | N/A  |-------|    |-------| N/A  | N/A  |RGB MD|HUE - |SAT - |BRT  -|
   * `-----------------------------------------/       /     \      \-----------------------------------------'
-  *                   | LAlt | LGUI |LOWER | /Space  /       \Enter \  |RAISE |BackSP| RGUI |
+  *                   |      |      |      | /       /       \      \  | DEL  |      |      |
   *                   |      |      |      |/       /         \      \ |      |      |      |
   *                   `----------------------------'           '------''--------------------'
   */
-
-	
  [_RAISE] = LAYOUT(
     KC_NO,  KC_NO,   KC_NO,  KC_NO,    KC_NO,  KC_NO,                  KC_NO,  KC_NO,  KC_NO,   KC_NO,   KC_NO,    KC_NO, \
     KC_NO,  KC_NO,   KC_NO,  KC_NO,    KC_NO,  KC_NO,                  KC_NO,  KC_NO,  KC_NO,   KC_NO,   KC_NO,    KC_NO, \
     BL_INC, BL_TOGG, BL_ON,  BL_BRTG,  KC_NO,  KC_NO,                  KC_NO,  KC_NO,  RGB_TOG, RGB_HUI, RGB_SAI,  RGB_VAI, \
     BL_DEC, BL_STEP, BL_OFF, KC_NO,    KC_NO,  KC_NO,  KC_NO,  KC_NO,  KC_NO,  KC_NO,  RGB_MOD, RGB_HUD, RGB_SAD,  RGB_VAD, \
-                        KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,     KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
+                        KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,     KC_TRNS, KC_DEL, KC_TRNS, KC_TRNS
  )
 };
 
@@ -194,13 +192,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
     case TG(1):
       if (record->event.pressed) {
-        layer_off(_RAISE);        
-      } 
+        layer_off(_RAISE);
+      }
       break;
     case TG(2):
       if (record->event.pressed) {
-        layer_off(_LOWER);        
-      } 
+        layer_off(_LOWER);
+      }
       break;
   	case KC_CUT:
   		if (record->event.pressed) {
