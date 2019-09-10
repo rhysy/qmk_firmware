@@ -36,7 +36,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #undef TAPPING_TERM
 #define TAPPING_TERM 150
-#define TAPPING_TOGGLE 2
+#define TAPPING_TOGGLE 2 // Number of times to tap to actuate secondary key function
+#define PERMISSIVE_HOLD  // This makes tap and hold keys (like Mod Tap) work better for fast typist, or for high TAPPING_TERM settings.
+#define IGNORE_MOD_TAP_INTERRUPT
 
 //#define COMBO_COUNT 1
 //#define COMBO_TERM 300
