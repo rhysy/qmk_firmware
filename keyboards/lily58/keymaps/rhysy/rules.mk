@@ -18,7 +18,7 @@ RGBLIGHT_ENABLE = yes       # Enable WS2812 RGB underlight.
 SWAP_HANDS_ENABLE = no      # Enable one-hand typing
 
 # CUSTOM SETTINGS
-TAP_DANCE_ENABLE=yes		# Enable double-tap option to trigger different keys
+#TAP_DANCE_ENABLE=yes		# Enable double-tap option to trigger different keys
 
 # Do not enable SLEEP_LED_ENABLE. it uses the same timer as BACKLIGHT_ENABLE
 SLEEP_LED_ENABLE = no    # Breathing sleep LED during USB suspend
