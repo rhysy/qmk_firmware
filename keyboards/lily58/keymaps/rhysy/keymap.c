@@ -35,7 +35,9 @@ extern uint8_t is_master;
 
 enum custom_keycodes {
 	BACK = SAFE_RANGE,
-	FORWARD
+	FORWARD,
+	CP_SRN, // Copy screen to clipboard
+    SAV_SRN // Save screen to file
 };
 
 #define _QWERTY 0
@@ -88,7 +90,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  ),
  /* RAISE
   * ,-----------------------------------------.                    ,-----------------------------------------.
-  * | N/A  | N/A  | N/A  | N/A  | N/A  | N/A  |                    | N/A  | N/A  | N/A  | N/A  | N/A  | N/A  |
+  * | N/A  | N/A  | N/A  |SV SRN |CP SRN | N/A  |                    | N/A  | N/A  | N/A  | N/A  | N/A  | N/A  |
   * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
   * | N/A  | N/A  | N/A  | N/A  | N/A  | N/A  |                    | N/A  | N/A  | N/A  | N/A  | N/A  | N/A  |
   * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
@@ -101,7 +103,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   *                   `----------------------------'           '------''--------------------'
   */
  [_RAISE] = LAYOUT(
-    KC_NO,  KC_NO,   KC_NO,  KC_NO,    KC_NO,  KC_NO,                  KC_NO,  KC_NO,  KC_NO,   KC_NO,   KC_NO,    KC_NO, \
+    KC_NO,  KC_NO,   KC_NO,  SAV_SRN,  CP_SRN, KC_NO,                  KC_NO,  KC_NO,  KC_NO,   KC_NO,   KC_NO,    KC_NO, \
     KC_NO,  KC_NO,   KC_NO,  KC_NO,    KC_NO,  KC_NO,                  KC_NO,  KC_NO,  KC_NO,   KC_NO,   KC_NO,    KC_NO, \
     BL_INC, BL_TOGG, BL_ON,  BL_BRTG,  KC_NO,  KC_NO,                  KC_NO,  KC_NO,  RGB_TOG, RGB_HUI, RGB_SAI,  RGB_VAI, \
     BL_DEC, BL_STEP, BL_OFF, KC_NO,    KC_NO,  KC_NO,  KC_NO,  KC_NO,  KC_NO,  KC_NO,  RGB_MOD, RGB_HUD, RGB_SAD,  RGB_VAD, \
@@ -230,6 +232,16 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 	    	SEND_STRING(SS_LGUI(SS_TAP(X_RIGHT)));
 	    }
 	    return false;
+    case CP_SRN:
+        if (record->event.pressed) {
+            SEND_STRING(SS_LGUI(SS_LCTRL(SS_LSFT("4"))));
+        }
+        return false;
+    case SAV_SRN:
+        if (record->event.pressed) {
+            SEND_STRING(SS_LGUI(SS_LSFT("4")));
+        }
+        return false;
   }
   return true;
 }
