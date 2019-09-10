@@ -17,7 +17,7 @@ extern rgblight_config_t rgblight_config;
 #endif
 
 //Tap Dance Declarations
-/*enum {
+enum {
   TD_GRV_EQUALS = 0,
   TD_SHIFT_CAPS
 };
@@ -30,8 +30,6 @@ qk_tap_dance_action_t tap_dance_actions[] = {
   [TD_SHIFT_CAPS]  = ACTION_TAP_DANCE_DOUBLE(KC_LSFT, KC_CAPS)
 // Other declarations would go here, separated by commas, if you have them
 };
-TD(TD_SHIFT_CAPS) TD(TD_GRV_EQUALS)
-*/
 
 extern uint8_t is_master;
 
@@ -50,7 +48,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* QWERTY
  * ,-----------------------------------------.                    ,-----------------------------------------.
- * | ESC  |   1  |   2  |   3  |   4  |   5  |                    |   6  |   7  |   8  |   9  |   0  |  `   |
+ * | ESC  |   1  |   2  |   3  |   4  |   5  |                    |   6  |   7  |   8  |   9  |   0  | `|=  |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
  * | Tab  |   Q  |   W  |   E  |   R  |   T  |                    |   Y  |   U  |   I  |   O  |   P  |  -   |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
@@ -63,10 +61,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                   `----------------------------'           '------''--------------------'
  */
  [_QWERTY] = LAYOUT(
-			KC_ESC,  KC_1,	KC_2,   KC_3,   KC_4,   KC_5,                  		KC_6,   KC_7,   KC_8,   KC_9,   KC_0,    KC_GRV, \
+			KC_ESC,  KC_1,	KC_2,   KC_3,   KC_4,   KC_5,                  		KC_6,   KC_7,   KC_8,   KC_9,   KC_0,    TD(TD_GRV_EQUALS), \
 		   	KC_TAB,  KC_Q, 	KC_W, 	KC_E, 	KC_R, 	KC_T, 						KC_Y, 	KC_U, 	KC_I, 	KC_O, 	KC_P, 	 KC_MINS, \
 		   	KC_LCTL, KC_A, 	KC_S, 	KC_D, 	KC_F, 	KC_G, 						KC_H, 	KC_J, 	KC_K, 	KC_L, 	KC_SCLN, KC_QUOT, \
-            KC_LSFT, KC_Z, 	KC_X, 	KC_C, 	KC_V, 	KC_B,	KC_LBRC,KC_RBRC, 	KC_N, 	KC_M, 	KC_COMM,KC_DOT, KC_SLSH, KC_RSFT, \
+   TD(TD_SHIFT_CAPS),KC_Z, 	KC_X, 	KC_C, 	KC_V, 	KC_B,	KC_LBRC,KC_RBRC, 	KC_N, 	KC_M, 	KC_COMM,KC_DOT, KC_SLSH, KC_RSFT, \
    								KC_LALT, KC_LGUI, TT(1), KC_ENT, 			KC_SPC, KC_BSPC, TT(2), KC_BSLS \
  ),
 /* LOWER
@@ -96,19 +94,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
   * | N/A  | N/A  | N/A  | N/A  | N/A  | N/A  |                    | N/A  | N/A  | N/A  | N/A  | N/A  | N/A  |
   * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
-  * | BL+  |BL TGL|BL ON |BL BTH| N/A  | N/A  |-------.    ,-------| N/A  |RGB TG|HUE + |SAT + |BRT + | N/A  |
+  * | BL+  |BL TGL|BL ON |BL BTH| N/A  | N/A  |-------.    ,-------| N/A  | N/A  |RGB TG|HUE + |SAT + |BRT + |
   * |------+------+------+------+------+------|   [   |    |    ]  |------+------+------+------+------+------|
-  * | BL-  |BL CYL|BL OFF| N/A  | N/A  | N/A  |-------|    |-------| N/A  |RGB MD|HUE - |SAT - |BRT  -| CAPS |
+  * | BL-  |BL CYL|BL OFF| N/A  | N/A  | N/A  |-------|    |-------| N/A  | N/A  |RGB MD|HUE - |SAT - |BRT  -|
   * `-----------------------------------------/       /     \      \-----------------------------------------'
   *                   |      |      |      | /       /       \      \  | DEL  |      |      |
   *                   |      |      |      |/       /         \      \ |      |      |      |
   *                   `----------------------------'           '------''--------------------'
   */
  [_RAISE] = LAYOUT(
-    KC_NO,  KC_NO,   KC_NO,  SAV_SRN,  CP_SRN, KC_NO,                  KC_NO,  KC_NO,   KC_NO,   KC_NO,   KC_NO,    KC_NO, \
-    KC_NO,  KC_NO,   KC_NO,  KC_NO,    KC_NO,  KC_NO,                  KC_NO,  KC_NO,   KC_NO,   KC_NO,   KC_NO,    KC_NO, \
-    BL_INC, BL_TOGG, BL_ON,  BL_BRTG,  KC_NO,  KC_NO,                  KC_NO,  RGB_TOG, RGB_HUI, RGB_SAI, RGB_VAI,  KC_NO, \
-    BL_DEC, BL_STEP, BL_OFF, KC_NO,    KC_NO,  KC_NO,  KC_NO,  KC_NO,  KC_NO,  RGB_MOD, RGB_HUD, RGB_SAD, RGB_VAD,  KC_CAPS, \
+    KC_NO,  KC_NO,   KC_NO,  SAV_SRN,  CP_SRN, KC_NO,                  KC_NO,  KC_NO,  KC_NO,   KC_NO,   KC_NO,    KC_NO, \
+    KC_NO,  KC_NO,   KC_NO,  KC_NO,    KC_NO,  KC_NO,                  KC_NO,  KC_NO,  KC_NO,   KC_NO,   KC_NO,    KC_NO, \
+    BL_INC, BL_TOGG, BL_ON,  BL_BRTG,  KC_NO,  KC_NO,                  KC_NO,  KC_NO,  RGB_TOG, RGB_HUI, RGB_SAI,  RGB_VAI, \
+    BL_DEC, BL_STEP, BL_OFF, KC_NO,    KC_NO,  KC_NO,  KC_NO,  KC_NO,  KC_NO,  KC_NO,  RGB_MOD, RGB_HUD, RGB_SAD,  RGB_VAD, \
                         KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,     KC_TRNS, KC_DEL, KC_TRNS, KC_TRNS
  )
 };
