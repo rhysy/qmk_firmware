@@ -19,7 +19,8 @@ extern rgblight_config_t rgblight_config;
 //Tap Dance Declarations
 enum {
   TD_GRV_EQUALS = 0,
-  TD_SHIFT_CAPS
+  TD_SHIFT_CAPS,
+  TD_F1_TAB
 };
 
 //Tap Dance Definitions
@@ -27,8 +28,9 @@ qk_tap_dance_action_t tap_dance_actions[] = {
   // Tap once for Dash, twice for Equals
   [TD_GRV_EQUALS]  = ACTION_TAP_DANCE_DOUBLE(KC_GRV, KC_PEQL),
   // Tap once for Shift, twice for Caps Lock
-  [TD_SHIFT_CAPS]  = ACTION_TAP_DANCE_DOUBLE(KC_LSFT, KC_CAPS)
-// Other declarations would go here, separated by commas, if you have them
+  [TD_SHIFT_CAPS]  = ACTION_TAP_DANCE_DOUBLE(KC_LSFT, KC_CAPS),
+  // Tap once for F1, twice for Tab
+  [TD_F1_TAB]  = ACTION_TAP_DANCE_DOUBLE(KC_F1, KC_TAB)
 };
 
 extern uint8_t is_master;
@@ -71,7 +73,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,-----------------------------------------.                    ,-----------------------------------------.
  * |      |      |      |      |      |      |                    |      |      |      |      |      |      |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |  F1  |  F2  |  F3  |  F4  |  F5  |  F6  |                    |  F7  |  F8  |  F9  | F10  | F11  | F12  |
+ * |F1|TAB|  F2  |  F3  |  F4  |  F5  |  F6  |                    |  F7  |  F8  |  F9  | F10  | F11  | F12  |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
  * |      | PREV | NEXT |VOL UP| CUT  | COPY |-------.    ,-------|   =  |PG UP |  UP  |PG DWN|   +  |   -  |
  * |------+------+------+------+------+------| BACK  |    |FORWARD|------+------+------+------+------+------|
@@ -82,11 +84,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                   `----------------------------'           '------''--------------------'
  */
  [_LOWER] = LAYOUT(
-	KC_TRNS,  KC_TRNS, 	KC_TRNS,  KC_TRNS,  	KC_TRNS,  KC_TRNS, 						KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS, \
-	KC_F1,    KC_F2, 	KC_F3, 	  KC_F4, 		KC_F5, 	  KC_F6, 						KC_F7, 	  KC_F8, 	KC_F9, 	  KC_F10, 	KC_F11,   KC_F12, \
-	KC_TRNS,  KC_MPRV, 	KC_MNXT,  KC__VOLUP, 	KC_CUT,   KC_COPY, 						KC_PEQL,  KC_PGUP,  KC_UP, 	  KC_PGDN,  KC_PPLS,  KC_PMNS, \
-	KC_TRNS,  KC_MPLY, 	KC__MUTE, KC__VOLDOWN,	KC_PSTE,  KC_PSTE, 	 BACK,     FORWARD, KC_PDOT,  KC_LEFT,  KC_DOWN,  KC_RGHT,  KC_PAST,  KC_PSLS, \
-							KC_TRNS,    KC_TRNS,  	KC_TRNS,  KC_ENT, 				KC_SPC, KC_TRNS, KC_TRNS, KC_UNDO \
+	KC_TRNS,        KC_TRNS, 	KC_TRNS,  KC_TRNS,  	KC_TRNS,  KC_TRNS, 						KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS, \
+	TD(TD_F1_TAB),  KC_F2, 	    KC_F3, 	  KC_F4, 		KC_F5, 	  KC_F6, 						KC_F7, 	  KC_F8, 	KC_F9, 	  KC_F10, 	KC_F11,   KC_F12, \
+	KC_TRNS,        KC_MPRV, 	KC_MNXT,  KC__VOLUP, 	KC_CUT,   KC_COPY, 						KC_PEQL,  KC_PGUP,  KC_UP, 	  KC_PGDN,  KC_PPLS,  KC_PMNS, \
+	KC_TRNS,        KC_MPLY, 	KC__MUTE, KC__VOLDOWN,	KC_PSTE,  KC_PSTE, 	BACK,     FORWARD,  KC_PDOT,  KC_LEFT,  KC_DOWN,  KC_RGHT,  KC_PAST,  KC_PSLS, \
+							         KC_TRNS,    KC_TRNS,  	 KC_TRNS,   KC_ENT, 			KC_SPC,   KC_TRNS,  KC_TRNS,  KC_UNDO \
  ),
  /* RAISE
   * ,-----------------------------------------.                    ,-----------------------------------------.
