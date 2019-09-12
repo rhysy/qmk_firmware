@@ -270,9 +270,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
 // Change LED colors based on layer
 layer_state_t layer_state_set_user(layer_state_t state) {
-	if (host_keyboard_leds() & (1 << USB_LED_CAPS_LOCK)) {
-		rgblight_setrgb(RGB_PINK);
-	}
 
     switch (biton32(state)) {
         case _RAISE:
@@ -292,4 +289,11 @@ layer_state_t layer_state_set_user(layer_state_t state) {
             break;
     }
   return state;
+}
+
+void led_set_user(uint8_t usb_led) {
+    if (host_keyboard_leds() & (1<<USB_LED_CAPS_LOCK)) {
+        rgblight_mode(1);
+        rgblight_setrgb(RGB_PINK);
+    }
 }
