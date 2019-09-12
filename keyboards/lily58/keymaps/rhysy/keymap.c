@@ -274,26 +274,23 @@ layer_state_t layer_state_set_user(layer_state_t state) {
     switch (biton32(state)) {
         case _RAISE:
             rgblight_mode(1);
-            rgblight_setrgb(RGB_ORANGE);
+            rgblight_setrgb_orange();
             break;
         case _LOWER:
             rgblight_mode(1);
-            rgblight_setrgb (RGB_MAGENTA);
-            break;
-        case _QWERTY:
-            rgblight_mode(RGB_current_mode);
-            rgblight_sethsv(rgblight_config.hue, rgblight_config.sat, rgblight_config.val);
+            rgblight_setrgb_magenta();
             break;
         default: //  for any other layers, or the default layer
-            rgblight_setrgb(0x00,  0xFF, 0xFF);
+            rgblight_mode(RGB_current_mode);
+            rgblight_sethsv(rgblight_config.hue, rgblight_config.sat, rgblight_config.val);
             break;
     }
   return state;
 }
 
 void led_set_user(uint8_t usb_led) {
-    if (host_keyboard_leds() & (1<<USB_LED_CAPS_LOCK)) {
+    if (IS_LED_ON(usb_led, USB_LED_CAPS_LOCK)) {
         rgblight_mode(1);
-        rgblight_setrgb(RGB_PINK);
+        rgblight_setrgb_red();
     }
 }
