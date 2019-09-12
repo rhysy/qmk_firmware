@@ -156,6 +156,7 @@ const char *read_logo(void);
 void set_keylog(uint16_t keycode, keyrecord_t *record);
 const char *read_keylog(void);
 const char *read_keylogs(void);
+const char *read_host_led_state(void);
 
 // const char *read_mode_icon(bool swap);
 // const char *read_host_led_state(void);
@@ -171,9 +172,9 @@ void matrix_render_user(struct CharacterMatrix *matrix) {
     // If you want to change the display of OLED, you need to change here
     matrix_write_ln(matrix, read_layer_state());
     matrix_write_ln(matrix, read_keylog());
-    matrix_write_ln(matrix, read_keylogs());
+    matrix_write_ln(matrix, read_host_led_state());
+    //matrix_write_ln(matrix, read_keylogs());
     //matrix_write_ln(matrix, read_mode_icon(keymap_config.swap_lalt_lgui));
-    //matrix_write_ln(matrix, read_host_led_state());
     //matrix_write_ln(matrix, read_timelog());
   } else {
     matrix_write(matrix, read_logo());
@@ -256,29 +257,39 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             SEND_STRING(SS_LGUI(SS_LSFT("4")));
         }
         return false;
+    case RGB_MOD:
+        if (record->event.pressed) {
+        } else {
+            // Save the LED mode change value for restoration later
+            RGB_current_mode = rgblight_config.mode;
+        }
+        return true;
   }
   return true;
 }
 
 // Change LED colors based on layer
 layer_state_t layer_state_set_user(layer_state_t state) {
-	if (host_keyboard_leds() & (1<<USB_LED_CAPS_LOCK)) {
+	if (host_keyboard_leds() & (1 << USB_LED_CAPS_LOCK)) {
 		rgblight_setrgb(RGB_PINK);
 	}
 
     switch (biton32(state)) {
-    case _RAISE:
-        rgblight_setrgb (RGB_ORANGE);
-        break;
-    case _LOWER:
-        rgblight_setrgb (RGB_MAGENTA);
-        break;
-    case _QWERTY:
-        rgblight_setrgb (RGB_TEAL);
-        break;
-    default: //  for any other layers, or the default layer
-        rgblight_setrgb (0x00,  0xFF, 0xFF);
-        break;
+        case _RAISE:
+            rgblight_mode(1);
+            rgblight_setrgb(RGB_ORANGE);
+            break;
+        case _LOWER:
+            rgblight_mode(1);
+            rgblight_setrgb (RGB_MAGENTA);
+            break;
+        case _QWERTY:
+            rgblight_mode(RGB_current_mode);
+            rgblight_sethsv(rgblight_config.hue, rgblight_config.sat, rgblight_config.val);
+            break;
+        default: //  for any other layers, or the default layer
+            rgblight_setrgb(0x00,  0xFF, 0xFF);
+            break;
     }
   return state;
 }
