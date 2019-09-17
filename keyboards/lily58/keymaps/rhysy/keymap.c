@@ -36,10 +36,8 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 extern uint8_t is_master;
 
 enum custom_keycodes {
-	BACK = SAFE_RANGE,
-	FORWARD,
-	CP_SRN, // Copy screen to clipboard
-    SAV_SRN // Save screen to file
+	CP_SRN = SAFE_RANGE, // Copy screen to clipboard
+    SAV_SRN              // Save screen to file
 };
 
 #define _QWERTY 0
@@ -82,10 +80,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |F1|TAB|  F2  |  F3  |  F4  |  F5  |  F6  |                    |  F7  |  F8  |  F9  | F10  | F11  | F12  |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
  * |      | PREV | NEXT |VOL UP| CUT  | COPY |-------.    ,-------|   =  |PG UP |  UP  |PG DWN|   +  |   -  |
- * |------+------+------+------+------+------| BACK  |    |FORWARD|------+------+------+------+------+------|
+ * |------+------+------+------+------+------|   .   |    |   =   |------+------+------+------+------+------|
  * |      | PLAY | MUTE |VOL DN|PASTE |PASTE |-------|    |-------|   .  | LEFT | DOWN |RIGHT |   *  |   /  |
  * `-----------------------------------------/       /     \      \-----------------------------------------'
- *                   |      |      |      | /Enter  /       \Space \  |      |      |      |
+ *                   |      |      |      | /Enter  /       \Space \  |      |      | UNDO |
  *                   |      |      |      |/       /         \      \ |      |      |      |
  *                   `----------------------------'           '------''--------------------'
  */
@@ -99,7 +97,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	KC_TRNS,   KC_TRNS,   KC_TRNS,   KC_TRNS,  	   KC_TRNS,   KC_TRNS, 						 KC_TRNS,   KC_TRNS,   KC_TRNS,  KC_TRNS,   KC_TRNS,   KC_TRNS, \
 	F1_TAB,    KC_F2, 	  KC_F3, 	 KC_F4, 	   KC_F5, 	  KC_F6, 						 KC_F7, 	KC_F8, 	   KC_F9, 	 KC_F10,    KC_F11,    KC_F12, \
 	KC_TRNS,   KC_MPRV,   KC_MNXT,   VOLUP_ALT,    CUT_CMD,   KC_COPY, 						 KC_PEQL,   PGUP_CMD,  UP_ALT, 	 KC_PGDN,   KC_PPLS,   KC_PMNS, \
-	KC_TRNS,   KC_MPLY,   KC__MUTE,  KC__VOLDOWN,  KC_PSTE,   KC_PSTE,   BACK,     FORWARD,  KC_PDOT,   KC_LEFT,   KC_DOWN,  KC_RGHT,   KC_PAST,   KC_PSLS, \
+	KC_TRNS,   KC_MPLY,   KC__MUTE,  KC__VOLDOWN,  KC_PSTE,   KC_PSTE,   KC_PDOT,     KC_PEQL,  KC_PDOT,   KC_LEFT,   KC_DOWN,  KC_RGHT,   KC_PAST,   KC_PSLS, \
 							    KC_TRNS,    KC_TRNS,  	KC_TRNS,   KC_ENT, 			     KC_SPC,   KC_TRNS,   KC_TRNS,   KC_UNDO \
  ),
  /* RAISE
@@ -237,16 +235,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 			SEND_STRING(SS_LGUI("z"));
 		}
 		return false;
-	case BACK:
-		if (record->event.pressed) {
-			SEND_STRING(SS_LGUI(SS_TAP(X_LEFT)));
-		}
-		return false;
-	case FORWARD:
-	    if (record->event.pressed) {
-	    	SEND_STRING(SS_LGUI(SS_TAP(X_RIGHT)));
-	    }
-	    return false;
     case CP_SRN:
         if (record->event.pressed) {
             SEND_STRING(SS_LGUI(SS_LCTRL(SS_LSFT("4"))));
