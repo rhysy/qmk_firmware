@@ -96,7 +96,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 #define F1_TAB       TD(TD_F1_TAB)
 
  [_LOWER] = LAYOUT(
-	KC_TRNS,   KC_TRNS,   KC_TRNS,   KC_TRNS,  	   KC_TRNS,   KC_TRNS, 						 KC_TRNS,   KC_TRNS,   KC_TRNS,  KC_TRNS,   KC_TRNS,   KC_TRNS, \
+	KC_ESC,   KC_TRNS,   KC_TRNS,   KC_TRNS,  	   KC_TRNS,   KC_TRNS, 						 KC_TRNS,   KC_TRNS,   KC_TRNS,  KC_TRNS,   KC_TRNS,   KC_TRNS, \
 	F1_TAB,    KC_F2, 	  KC_F3, 	 KC_F4, 	   KC_F5, 	  KC_F6, 						 KC_F7, 	KC_F8, 	   KC_F9, 	 KC_F10,    KC_F11,    KC_F12, \
 	KC_TRNS,   KC_MPRV,   KC_MNXT,   VOLUP_ALT,    CUT_CMD,   KC_COPY, 						 KC_PEQL,   PGUP_CMD,  UP_ALT, 	 KC_PGDN,   KC_PPLS,   KC_PMNS, \
 	KC_TRNS,   KC_MPLY,   KC__MUTE,  KC__VOLDOWN,  KC_PSTE,   KC_PSTE,   KC_PDOT,     KC_PEQL,  KC_PDOT,   KC_LEFT,   KC_DOWN,  KC_RGHT,   KC_PAST,   KC_PSLS, \
@@ -104,7 +104,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  ),
  /* RAISE
   * ,-----------------------------------------.                    ,-----------------------------------------.
-  * | N/A  | N/A  | N/A  |SV SRN|CP SRN | N/A |                    | N/A  | N/A  | N/A  | N/A  | N/A  | N/A  |
+  * | ESC  | N/A  | N/A  |SV SRN|CP SRN | N/A |                    | N/A  | N/A  | N/A  | N/A  | N/A  | N/A  |
   * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
   * | N/A  | N/A  | N/A  | N/A  | N/A  | N/A  |                    | N/A  | N/A  | N/A  | N/A  | N/A  | N/A  |
   * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
