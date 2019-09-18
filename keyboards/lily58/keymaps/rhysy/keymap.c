@@ -18,7 +18,7 @@ extern rgblight_config_t rgblight_config;
 
 //Tap Dance Declarations
 enum {
-  TD_GRV_ESC = 0,
+  TD_ESC_GRV = 0,
   TD_SHIFT_CAPS,
   TD_F1_TAB
 };
@@ -26,7 +26,7 @@ enum {
 // Tap Dance Definitions
 qk_tap_dance_action_t tap_dance_actions[] = {
   // Tap once for Dash, twice for Equals
-  [TD_GRV_ESC]  = ACTION_TAP_DANCE_DOUBLE(KC_GRV, KC_ESC),
+  [TD_ESC_GRV]  = ACTION_TAP_DANCE_DOUBLE(KC_ESC, KC_GRV),
   // Tap once for Shift, twice for Caps Lock
   [TD_SHIFT_CAPS]  = ACTION_TAP_DANCE_DOUBLE(KC_LSFT, KC_CAPS),
   // Tap once for F1, twice for Tab
@@ -48,7 +48,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* QWERTY
  * ,-----------------------------------------.                    ,-----------------------------------------.
- * |`|ESC |   1  |   2  |   3  |   4  |   5  |                    |   6  |   7  |   8  |   9  |   0  |  -   |
+ * |ESC|` |   1  |   2  |   3  |   4  |   5  |                    |   6  |   7  |   8  |   9  |   0  |  -   |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
  * | Tab  |   Q  |   W  |   E  |   R  |   T  |                    |   Y  |   U  |   I  |   O  |   P  |  \   |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
@@ -61,17 +61,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                   `----------------------------'           '------''--------------------'
  */
 #define SFT_CAPS   TD(TD_SHIFT_CAPS)
-#define F_CMD      LGUI_T(KC_F)
-#define J_CMD      RGUI_T(KC_J)
-#define D_ALT      LALT_T(KC_D)
-#define K_ALT      RALT_T(KC_K)
-#define GRV_ESC    TD(TD_GRV_ESC)
-#define QUOT_CTRL  RCTL_T(KC_QUOT)
+#define F_CMD      GUI_T(KC_F)
+#define J_CMD      GUI_T(KC_J)
+#define D_ALT      ALT_T(KC_D)
+#define K_ALT      ALT_T(KC_K)
+#define S_SFT      SFT_T(KC_S)
+#define L_SFT      SFT_T(KC_L)
+#define ESC_GRV    TD(TD_ESC_GRV)
+#define QUOT_CTRL  CTL_T(KC_QUOT)
 
  [_QWERTY] = LAYOUT(
-	GRV_ESC,  KC_1,   KC_2,   KC_3,   KC_4,    KC_5,                  		KC_6,   KC_7,   KC_8,    KC_9,   KC_0,    KC_MINS, \
+	ESC_GRV,  KC_1,   KC_2,   KC_3,   KC_4,    KC_5,                  		KC_6,   KC_7,   KC_8,    KC_9,   KC_0,    KC_MINS, \
 	KC_TAB,   KC_Q,   KC_W,   KC_E,   KC_R,    KC_T, 						KC_Y, 	KC_U, 	KC_I, 	 KC_O, 	 KC_P, 	  KC_BSLS, \
-	KC_LCTL,  KC_A,   KC_S,   D_ALT,  F_CMD,   KC_G, 						KC_H, 	J_CMD, 	K_ALT, 	 KC_L, 	 KC_SCLN, QUOT_CTRL, \
+	KC_LCTL,  KC_A,   S_SFT,  D_ALT,  F_CMD,   KC_G, 						KC_H, 	J_CMD, 	K_ALT, 	 L_SFT,  KC_SCLN, QUOT_CTRL, \
     SFT_CAPS, KC_Z,   KC_X,   KC_C,   KC_V,    KC_B,   KC_LBRC,  KC_RBRC, 	KC_N, 	KC_M, 	KC_COMM, KC_DOT, KC_SLSH, KC_RSFT, \
    						KC_LALT, KC_LGUI, TT(1), KC_ENT, 			KC_SPC, KC_BSPC, TT(2), KC_EQL \
  ),
