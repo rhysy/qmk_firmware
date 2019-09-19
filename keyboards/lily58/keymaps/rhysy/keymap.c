@@ -253,6 +253,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         return false;
     case RGB_MOD:
         if (record->event.pressed) {
+            // Allow for editing RGB mode from where we last left off rather than start at mode 1 again
+            // since layer gets set to mode 1 for _RAISE where this key is available.
+            rgblight_mode(RGB_current_mode);
         } else {
             // Save the LED mode change value for restoration later
             RGB_current_mode = rgblight_config.mode;
