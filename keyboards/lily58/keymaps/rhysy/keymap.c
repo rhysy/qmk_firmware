@@ -260,31 +260,36 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   return true;
 }
 
+void update_led(void) {
+    if (host_keyboard_leds() & (1<<USB_LED_CAPS_LOCK)) {
+        rgblight_mode(1);
+        rgblight_setrgb_red();
+    } else {
+        switch (biton32(layer_state)) {
+            case _RAISE:
+                rgblight_mode(1);
+                rgblight_setrgb_orange();
+                //layer_off(_LOWER);
+                break;
+            case _LOWER:
+                rgblight_mode(1);
+                rgblight_setrgb_magenta();
+                //layer_off(_RAISE);
+                break;
+            default: //  for any other layers, or the default layer
+                rgblight_mode(RGB_current_mode);
+                rgblight_sethsv(rgblight_config.hue, rgblight_config.sat, rgblight_config.val);
+                break;
+        }
+    }
+}
+
 // Change LED colors based on layer
 layer_state_t layer_state_set_user(layer_state_t state) {
-
-    switch (biton32(state)) {
-        case _RAISE:
-            rgblight_mode(1);
-            rgblight_setrgb_orange();
-            //layer_off(_LOWER);
-            break;
-        case _LOWER:
-            rgblight_mode(1);
-            rgblight_setrgb_magenta();
-            //layer_off(_RAISE);
-            break;
-        default: //  for any other layers, or the default layer
-            rgblight_mode(RGB_current_mode);
-            rgblight_sethsv(rgblight_config.hue, rgblight_config.sat, rgblight_config.val);
-            break;
-    }
-  return state;
+    update_led();
+    return state;
 }
 
 void led_set_user(uint8_t usb_led) {
-    if (IS_LED_ON(usb_led, USB_LED_CAPS_LOCK)) {
-        rgblight_mode(1);
-        rgblight_setrgb_red();
-    }
+    update_led();
 }
