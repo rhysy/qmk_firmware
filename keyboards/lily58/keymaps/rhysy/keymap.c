@@ -267,10 +267,12 @@ layer_state_t layer_state_set_user(layer_state_t state) {
         case _RAISE:
             rgblight_mode(1);
             rgblight_setrgb_orange();
+            layer_off(_LOWER);
             break;
         case _LOWER:
             rgblight_mode(1);
             rgblight_setrgb_magenta();
+            layer_off(_RAISE);
             break;
         default: //  for any other layers, or the default layer
             rgblight_mode(RGB_current_mode);
