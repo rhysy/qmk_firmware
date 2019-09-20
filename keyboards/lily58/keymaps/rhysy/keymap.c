@@ -130,6 +130,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 int RGB_current_mode;
 
+// EEPROM support for retaining RGB mode after power cycle. QMK bug workaround...
+typedef union {
+  uint32_t raw;
+  struct {
+    int     rgb_mode;
+  };
+} user_config_t;
+
+user_config_t user_config;
+
 // Setting ADJUST layer RGB back to default
 void update_tri_layer_RGB(uint8_t layer1, uint8_t layer2, uint8_t layer3) {
   if (IS_LAYER_ON(layer1) && IS_LAYER_ON(layer2)) {
@@ -147,6 +157,11 @@ void matrix_init_user(void) {
     #ifdef SSD1306OLED
         iota_gfx_init(!has_usb());   // turns on the display
     #endif
+}
+
+void keyboard_post_init_user(void) {
+  // Read the user config from EEPROM
+  user_config.raw = eeconfig_read_user();
 }
 
 //SSD1306 OLED update loop, make sure to add #define SSD1306OLED in config.h
@@ -255,10 +270,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         if (record->event.pressed) {
             // Allow for editing RGB mode from where we last left off rather than start at mode 1 again
             // since layer gets set to mode 1 for _RAISE where this key is available.
-            rgblight_mode(RGB_current_mode);
+            rgblight_mode(user_config.rgb_mode);
         } else {
-            // Save the LED mode change value for restoration later
-            RGB_current_mode = rgblight_config.mode;
+            // Save the LED mode change value for restoration later when returning to default layer
+            user_config.rgb_mode = rgblight_config.mode;
+            // Save RGB mode to eeprom so we can retain RGB mode after power cycle
+            eeconfig_update_user(user_config.raw);
         }
         return true;
   }
@@ -282,7 +299,7 @@ void update_led(void) {
                 //layer_off(_RAISE);
                 break;
             default: //  for any other layers, or the default layer
-                rgblight_mode(RGB_current_mode);
+                rgblight_mode(user_config.rgb_mode);
                 rgblight_sethsv(rgblight_config.hue, rgblight_config.sat, rgblight_config.val);
                 break;
         }
