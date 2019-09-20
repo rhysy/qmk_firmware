@@ -174,8 +174,8 @@ void matrix_render_user(struct CharacterMatrix *matrix) {
   if (is_master) {
     // If you want to change the display of OLED, you need to change here
     matrix_write_ln(matrix, read_layer_state());
-    matrix_write_ln(matrix, read_host_led_state());
     matrix_write_ln(matrix, read_rgb_info());
+    matrix_write_ln(matrix, read_host_led_state());
     //matrix_write_ln(matrix, read_keylog());
     //matrix_write_ln(matrix, read_keylogs());
     //matrix_write_ln(matrix, read_mode_icon(keymap_config.swap_lalt_lgui));
@@ -267,7 +267,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
 void update_led(void) {
     if (host_keyboard_leds() & (1<<USB_LED_CAPS_LOCK)) {
-        rgblight_mode(1);
+        rgblight_mode(15);
         rgblight_setrgb_red();
     } else {
         switch (biton32(layer_state)) {

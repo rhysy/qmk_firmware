@@ -43,8 +43,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //#define COMBO_COUNT 1
 //#define COMBO_TERM 300
 
+// Underglow
 #undef RGBLED_NUM
-#define RGBLIGHT_ANIMATIONS
 #define RGBLED_NUM 10
 #define RGBLED_SPLIT 5
 #define RGBLIGHT_SPLIT
@@ -54,10 +54,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define RGBLIGHT_VAL_STEP 17
 #define RGBLIGHT_SLEEP
 
-// Underglow
-/*
-#undef RGBLED_NUM
-#define RGBLED_NUM 14    // Number of LEDs
-#define RGBLIGHT_ANIMATIONS
-#define RGBLIGHT_SLEEP
-*/
+// Animations
+//#define RGBLIGHT_ANIMATIONS - enables all animations
+#define RGBLIGHT_EFFECT_ALTERNATING
+#define RGBLIGHT_EFFECT_RAINBOW_MOOD
+#define RGBLIGHT_EFFECT_RAINBOW_SWIRL
+#define RGBLIGHT_EFFECT_STATIC_GRADIENT
+
+#define RGBLIGHT_EFFECT_KNIGHT
+#define RGBLIGHT_EFFECT_KNIGHT_LENGTH 1
+
+#define RGBLIGHT_EFFECT_SNAKE
+#define RGBLIGHT_EFFECT_SNAKE_LENGTH 5
