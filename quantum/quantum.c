@@ -967,6 +967,10 @@ void matrix_init_quantum() {
 #ifdef OUTPUT_AUTO_ENABLE
     set_output(OUTPUT_AUTO);
 #endif
+#ifdef DIP_SWITCH_ENABLE
+    dip_switch_init();
+#endif
+
     matrix_init_kb();
 }
 
@@ -1001,6 +1005,10 @@ void matrix_scan_quantum() {
 
 #ifdef HAPTIC_ENABLE
     haptic_task();
+#endif
+
+#ifdef DIP_SWITCH_ENABLE
+    dip_switch_read(false);
 #endif
 
     matrix_scan_kb();
@@ -1095,6 +1103,22 @@ void matrix_scan_quantum() {
 #        elif BACKLIGHT_PIN == D5
 #            define COMxx1 COM1A1
 #            define OCRxx OCR1A
+#        endif
+#    elif defined(__AVR_ATmega328P__) && (BACKLIGHT_PIN == B1 || BACKLIGHT_PIN == B2)
+#        define HARDWARE_PWM
+#        define ICRx ICR1
+#        define TCCRxA TCCR1A
+#        define TCCRxB TCCR1B
+#        define TIMERx_OVF_vect TIMER1_OVF_vect
+#        define TIMSKx TIMSK1
+#        define TOIEx TOIE1
+
+#        if BACKLIGHT_PIN == B1
+#            define COMxx1 COM1A1
+#            define OCRxx OCR1A
+#        elif BACKLIGHT_PIN == B2
+#            define COMxx1 COM1B1
+#            define OCRxx OCR1B
 #        endif
 #    else
 #        if !defined(BACKLIGHT_CUSTOM_DRIVER)
