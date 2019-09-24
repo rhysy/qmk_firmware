@@ -84,7 +84,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |      |      |      |      | N/A  | N/A  |                    |      |PG UP |  UP  |PG DWN| HOME | N/A  |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
  * |      |      |SHIFT | ALT  | CMD  | MUTE |-------.    ,-------|  N/A | LEFT | DOWN |RIGHT | END  | CTRL |
- * |------+------+------+------+------+------|  N/A  |    |  N/A  |------+------+------+------+------+------|
+ * |------+------+------+------+------+------|  N/A  |    |  DEL  |------+------+------+------+------+------|
  * |      |      | CUT  | COPY |PASTE |PASTE |-------|    |-------| N/A  | N/A  | N/A  | N/A  | N/A  | N/A  |
  * `-----------------------------------------/       /     \      \-----------------------------------------'
  *                   |      |      |      | /       /       \      \  |      |      | UNDO |
@@ -97,7 +97,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	F1_ESC,    KC_F2, 	  KC_F3, 	 KC_F4, 	KC_F5, 	   KC_F6, 						   KC_F7, 	 KC_F8, 	KC_F9, 	  KC_F10,    KC_F11,    KC_F12, \
 	KC_TRNS,   KC_TRNS,	  KC_TRNS, 	 KC_TRNS, 	KC_NO,     KC_NO,					       KC_TRNS,  KC_PGUP, 	KC_UP, 	  KC_PGDN,   KC_HOME,   KC_NO, \
 	KC_TRNS,   KC_TRNS,   KC_LSFT,   KC_LALT,   KC_LGUI,   KC__MUTE,					   KC_NO,    KC_LEFT,   KC_DOWN,  KC_RGHT,   KC_END,    KC_RCTL, \
-	KC_TRNS,   KC_TRNS,   KC_CUT,    KC_COPY,   KC_PSTE,   KC_PSTE,     KC_NO,   KC_NO,    KC_NO,    KC_NO,     KC_NO,    KC_NO,     KC_NO,     KC_NO, \
+	KC_TRNS,   KC_TRNS,   KC_CUT,    KC_COPY,   KC_PSTE,   KC_PSTE,     KC_NO,   KC_DEL,   KC_NO,    KC_NO,     KC_NO,    KC_NO,     KC_NO,     KC_NO, \
 							    KC_TRNS,    KC_TRNS,  KC_TRNS,   KC_TRNS, 			 KC_TRNS,   KC_TRNS,   KC_TRNS,   KC_UNDO \
  ),
  /* RAISE
