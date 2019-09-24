@@ -81,11 +81,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,-----------------------------------------.                    ,-----------------------------------------.
  * |F1|ESC|  F2  |  F3  |  F4  |  F5  |  F6  |                    |  F7  |  F8  |  F9  | F10  | F11  | F12  |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |      | PLAY | PREV | NEXT |VOL UP|VOL DN|                    | HOME |PG UP |  UP  |PG DWN|      |      |
+ * |      | PLAY | PREV | NEXT |VOL UP|VOL DN|                    | HOME |PG UP |  UP  |PG DWN| N/A  | N/A  |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |      |      |SHIFT | ALT  | CMD  | MUTE |-------.    ,-------| END  | LEFT | DOWN |RIGHT |      | CTRL |
- * |------+------+------+------+------+------|       |    |       |------+------+------+------+------+------|
- * |      |      | CUT  | COPY |PASTE |PASTE |-------|    |-------|      |      |      |      |      |      |
+ * |      |      |SHIFT | ALT  | CMD  | MUTE |-------.    ,-------| END  | LEFT | DOWN |RIGHT | N/A  | CTRL |
+ * |------+------+------+------+------+------|  N/A  |    |  N/A  |------+------+------+------+------+------|
+ * |      |      | CUT  | COPY |PASTE |PASTE |-------|    |-------| N/A  | N/A  | N/A  | N/A  | N/A  | N/A  |
  * `-----------------------------------------/       /     \      \-----------------------------------------'
  *                   |      |      |      | /       /       \      \  |      |      | UNDO |
  *                   |      |      |      |/       /         \      \ |      |      |      |
@@ -95,9 +95,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
  [_LOWER] = LAYOUT(
 	F1_ESC,    KC_F2, 	  KC_F3, 	 KC_F4, 	KC_F5, 	   KC_F6, 						   KC_F7, 	 KC_F8, 	KC_F9, 	  KC_F10,    KC_F11,    KC_F12, \
-	KC_TRNS,   KC_MPLY,	  KC_MPRV, 	 KC_MNXT, 	KC__VOLUP, KC__VOLDOWN,					   KC_HOME,  KC_PGUP, 	KC_UP, 	  KC_PGDN,   KC_TRNS,   KC_TRNS, \
-	KC_TRNS,   KC_TRNS,   KC_LSFT,   KC_LALT,   KC_LGUI,   KC__MUTE,					   KC_END,   KC_LEFT,   KC_DOWN,  KC_RGHT,   KC_TRNS,   KC_RCTL, \
-	KC_TRNS,   KC_TRNS,   KC_CUT,    KC_COPY,   KC_PSTE,   KC_PSTE,   KC_TRNS,   KC_TRNS,  KC_TRNS,  KC_TRNS,   KC_TRNS,  KC_TRNS,   KC_TRNS,   KC_TRNS, \
+	KC_TRNS,   KC_MPLY,	  KC_MPRV, 	 KC_MNXT, 	KC__VOLUP, KC__VOLDOWN,					   KC_HOME,  KC_PGUP, 	KC_UP, 	  KC_PGDN,   KC_NO,     KC_NO, \
+	KC_TRNS,   KC_TRNS,   KC_LSFT,   KC_LALT,   KC_LGUI,   KC__MUTE,					   KC_END,   KC_LEFT,   KC_DOWN,  KC_RGHT,   KC_NO,     KC_RCTL, \
+	KC_TRNS,   KC_TRNS,   KC_CUT,    KC_COPY,   KC_PSTE,   KC_PSTE,     KC_NO,   KC_NO,    KC_NO,    KC_NO,     KC_NO,    KC_NO,     KC_NO,     KC_NO, \
 							    KC_TRNS,    KC_TRNS,  KC_TRNS,   KC_TRNS, 			 KC_TRNS,   KC_TRNS,   KC_TRNS,   KC_UNDO \
  ),
  /* RAISE
