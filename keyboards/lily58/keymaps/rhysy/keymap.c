@@ -20,7 +20,7 @@ extern rgblight_config_t rgblight_config;
 enum {
   TD_ESC_GRV = 0,
   TD_SHIFT_CAPS,
-  TD_F1_TAB
+  TD_F1_ESC
 };
 
 // Tap Dance Definitions
@@ -30,7 +30,7 @@ qk_tap_dance_action_t tap_dance_actions[] = {
   // Tap once for Shift, twice for Caps Lock
   [TD_SHIFT_CAPS]  = ACTION_TAP_DANCE_DOUBLE(KC_LSFT, KC_CAPS),
   // Tap once for F1, twice for Tab
-  [TD_F1_TAB]  = ACTION_TAP_DANCE_DOUBLE(KC_F1, KC_TAB)
+  [TD_F1_ESC]  = ACTION_TAP_DANCE_DOUBLE(KC_F1, KC_ESC)
 };
 
 extern uint8_t is_master;
@@ -79,32 +79,26 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  ),
 /* LOWER
  * ,-----------------------------------------.                    ,-----------------------------------------.
- * |      |      |      |      |      |      |                    |      |      |      |      |      |      |
+ * |F1|ESC|  F2  |  F3  |  F4  |  F5  |  F6  |                    |  F7  |  F8  |  F9  | F10  | F11  | F12  |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |F1|TAB|  F2  |  F3  |  F4  |  F5  |  F6  |                    |  F7  |  F8  |  F9  | F10  | F11  | F12  |
+ * |      | PLAY | PREV | NEXT |VOL UP|VOL DN|                    | HOME |PG UP |  UP  |PG DWN|      |      |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |      | PREV | NEXT |VOL UP| CUT  | COPY |-------.    ,-------|   =  |PG UP |  UP  |PG DWN|   +  |   -  |
- * |------+------+------+------+------+------|   .   |    |   =   |------+------+------+------+------+------|
- * |      | PLAY | MUTE |VOL DN|PASTE |PASTE |-------|    |-------|   .  | LEFT | DOWN |RIGHT |   *  |   /  |
+ * |      |      |SHIFT | ALT  | CMD  | MUTE |-------.    ,-------| END  | LEFT | DOWN |RIGHT |      | CTRL |
+ * |------+------+------+------+------+------|       |    |       |------+------+------+------+------+------|
+ * |      |      | CUT  | COPY |PASTE |PASTE |-------|    |-------|      |      |      |      |      |      |
  * `-----------------------------------------/       /     \      \-----------------------------------------'
- *                   |      |      |      | /Enter  /       \Space \  |      |      | UNDO |
+ *                   |      |      |      | /       /       \      \  |      |      | UNDO |
  *                   |      |      |      |/       /         \      \ |      |      |      |
  *                   `----------------------------'           '------''--------------------'
  */
-#define VOLUP_ALT    LALT_T(KC__VOLUP)
-#define CUT_CMD      LGUI_T(KC_CUT)
-#define PGUP_CMD     RGUI_T(KC_PGUP)
-#define UP_ALT       RALT_T(KC_UP)
-#define NXT_SFT      SFT_T(KC_MNXT)
-#define PGDN_SFT      SFT_T(KC_PGDN)
-#define F1_TAB       TD(TD_F1_TAB)
+#define F1_ESC       TD(TD_F1_ESC)
 
  [_LOWER] = LAYOUT(
-	KC_ESC,    KC_TRNS,   KC_TRNS,   KC_TRNS,  	   KC_TRNS,   KC_TRNS, 						  KC_TRNS,   KC_TRNS,   KC_TRNS,  KC_TRNS,   KC_TRNS,   KC_TRNS, \
-	F1_TAB,    KC_F2, 	  KC_F3, 	 KC_F4, 	   KC_F5, 	  KC_F6, 						  KC_F7, 	 KC_F8, 	KC_F9, 	  KC_F10,    KC_F11,    KC_F12, \
-	KC_TRNS,   KC_MPRV,   NXT_SFT,   VOLUP_ALT,    CUT_CMD,   KC_COPY, 						  KC_PEQL,   PGUP_CMD,  UP_ALT,   PGDN_SFT,  KC_PPLS,   KC_PMNS, \
-	KC_TRNS,   KC_MPLY,   KC__MUTE,  KC__VOLDOWN,  KC_PSTE,   KC_PSTE,   KC_PDOT,   KC_PEQL,  KC_PDOT,   KC_LEFT,   KC_DOWN,  KC_RGHT,   KC_PAST,   KC_PSLS, \
-							    KC_TRNS,    KC_TRNS,  	KC_TRNS,   KC_ENT, 			     KC_SPC,   KC_TRNS,   KC_TRNS,   KC_UNDO \
+	F1_ESC,    KC_F2, 	  KC_F3, 	 KC_F4, 	KC_F5, 	   KC_F6, 						   KC_F7, 	 KC_F8, 	KC_F9, 	  KC_F10,    KC_F11,    KC_F12, \
+	KC_TRNS,   KC_MPLY,	  KC_MPRV, 	 KC_MNXT, 	KC__VOLUP, KC__VOLDOWN,					   KC_HOME,  KC_PGUP, 	KC_UP, 	  KC_PGDN,   KC_TRNS,   KC_TRNS, \
+	KC_TRNS,   KC_TRNS,   KC_LSFT,   KC_LALT,   KC_LGUI,   KC__MUTE,					   KC_END,   KC_LEFT,   KC_DOWN,  KC_RGHT,   KC_TRNS,   KC_RCTL, \
+	KC_TRNS,   KC_TRNS,   KC_CUT,    KC_COPY,   KC_PSTE,   KC_PSTE,   KC_TRNS,   KC_TRNS,  KC_TRNS,  KC_TRNS,   KC_TRNS,  KC_TRNS,   KC_TRNS,   KC_TRNS, \
+							    KC_TRNS,    KC_TRNS,  KC_TRNS,   KC_TRNS, 			 KC_TRNS,   KC_TRNS,   KC_TRNS,   KC_UNDO \
  ),
  /* RAISE
   * ,-----------------------------------------.                    ,-----------------------------------------.
