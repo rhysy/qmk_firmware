@@ -32,21 +32,24 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #define USE_SERIAL_PD2
 
-//#define TAPPING_FORCE_HOLD // breaks TT key if uncommented
+//#define TAPPING_FORCE_HOLD // WARNING: Breaks TT (tap toggle) layer change key if uncommented
 
 #undef TAPPING_TERM
-#define TAPPING_TERM 300
-#define TAPPING_TOGGLE 2 // Number of times to tap to actuate secondary key function
-#define PERMISSIVE_HOLD  // This makes tap and hold keys (like Mod Tap) work better for fast typist, or for high TAPPING_TERM settings.
-#define IGNORE_MOD_TAP_INTERRUPT
+#define TAPPING_TERM 200         // How long before a tap becomes a hold, if set above 500, a key tapped during the tapping term will turn it into a hold too
+#define TAPPING_TOGGLE 2         // Number of times to tap to actuate secondary key function
+#define PERMISSIVE_HOLD          // Makes tap and hold keys trigger the hold if another key is pressed before releasing, even if it hasn't hit the TAPPING_TERM
+#define IGNORE_MOD_TAP_INTERRUPT // Makes it possible to do rolling combos (zx) with keys that convert to other keys on hold, by enforcing the TAPPING_TERM for both keys.
 
-//#define COMBO_COUNT 1
-//#define COMBO_TERM 300
+//                  ====== COMBO Feature ======
+// * Hit multiple keys at once and produce a different effect. Ex. A && S == ESC
+// * Must set COMBO_ENABLE = yes in rules.mk to activate.
+//#define COMBO_COUNT 1     // Number of combos defined
+//#define COMBO_TERM 300    // Override TAPPING_TERM for COMBOS if defined
 
 // Underglow
 #undef RGBLED_NUM
 #define RGBLED_NUM 10
-//#define RGBLIGHT_SPLIT
+//#define RGBLIGHT_SPLIT            // Implicitly defined when RGBLED_SPLIT is defined
 #define RGBLED_SPLIT { 5, 5 }
 #define RGBLIGHT_LIMIT_VAL 255
 #define RGBLIGHT_HUE_STEP 10
