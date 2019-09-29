@@ -48,9 +48,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 // Underglow
 #undef RGBLED_NUM
-#define RGBLED_NUM 10
+#define RGBLED_NUM 24
 //#define RGBLIGHT_SPLIT            // Implicitly defined when RGBLED_SPLIT is defined
-#define RGBLED_SPLIT { 5, 5 }
+#define RGBLED_SPLIT { 12, 12 }
 #define RGBLIGHT_LIMIT_VAL 255
 #define RGBLIGHT_HUE_STEP 10
 #define RGBLIGHT_SAT_STEP 17
