@@ -65,7 +65,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define RGBLIGHT_EFFECT_STATIC_GRADIENT
 
 #define RGBLIGHT_EFFECT_KNIGHT
-#define RGBLIGHT_EFFECT_KNIGHT_LENGTH 1
+#define RGBLIGHT_EFFECT_KNIGHT_LENGTH 3
 
 #define RGBLIGHT_EFFECT_SNAKE
 #define RGBLIGHT_EFFECT_SNAKE_LENGTH 5
