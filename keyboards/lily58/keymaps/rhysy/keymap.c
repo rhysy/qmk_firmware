@@ -115,11 +115,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   *                   `----------------------------'           '------''--------------------'
   */
  [_RAISE] = LAYOUT(
-    KC_TRNS,  KC_NO,    KC_NO,    SAV_SRN,  CP_SRN,    KC_NO,                    KC_NO,   KC_7,    KC_8,   KC_9,    KC_PPLS,   KC_BSPC, \
-    KC_TRNS,  KC_MPLY,  KC_MPRV,  KC_MNXT,  KC__VOLUP, KC__VOLDOWN,              KC_NO,   KC_4,    KC_5,   KC_6,    KC_PMNS,   KC_NO, \
-    KC_TRNS,  RGB_MOD,  RGB_HUI,  RGB_SAI,  RGB_VAI,   KC__MUTE,                 KC_NO,   KC_1,    KC_2,   KC_3,    KC_PAST,   KC_NO, \
+    KC_TRNS,  KC_NO,    KC_NO,    SAV_SRN,  CP_SRN,    KC_NO,                      KC_NO,   KC_7,    KC_8,   KC_9,    KC_PPLS,   KC_BSPC, \
+    KC_TRNS,  KC_MPLY,  KC_MPRV,  KC_MNXT,  KC__VOLUP, KC__VOLDOWN,                KC_NO,   KC_4,    KC_5,   KC_6,    KC_PMNS,   KC_NO, \
+    KC_TRNS,  RGB_MOD,  RGB_HUI,  RGB_SAI,  RGB_VAI,   KC__MUTE,                   KC_NO,   KC_1,    KC_2,   KC_3,    KC_PAST,   KC_NO, \
     KC_TRNS,  RGB_RMOD, RGB_HUD,  RGB_SAD,  RGB_VAD,   RGB_TOG, KC_LPRN,  KC_RPRN, KC_NO,   KC_PEQL, KC_0,   KC_PDOT, KC_PSLS,   KC_NO, \
-                           KC_TRNS,  KC_TRNS,  KC_TRNS, KC_TRNS,          KC_TRNS, KC_DEL, KC_TRNS, KC_TRNS
+                           KC_TRNS,  KC_TRNS,  KC_TRNS, KC_TRNS,              KC_TRNS,  KC_DEL,  KC_TRNS, KC_TRNS
  )
 };
 
