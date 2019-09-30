@@ -287,7 +287,7 @@ void update_led(void) {
         switch (biton32(layer_state)) {
             case _RAISE:
                 rgblight_mode(1);
-                rgblight_setrgb_orange();
+                rgblight_setrgb_green();
                 //layer_off(_LOWER);
                 break;
             case _LOWER:
