@@ -94,12 +94,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                   `----------------------------'           '------''--------------------'
  */
 #define F1_ESC       TD(TD_F1_ESC)
+#define LEFT_CMD     GUI_T(KC_LEFT)
+#define DOWN_ALT     ALT_T(KC_DOWN)
+#define RIGHT_SFT    SFT_T(KC_RGHT)
+#define END_CTL    CTL_T(KC_END)
 
  [_LOWER] = LAYOUT(
-	F1_ESC,    KC_F2, 	  KC_F3, 	 KC_F4, 	KC_F5, 	   KC_F6, 						   KC_F7, 	 KC_F8, 	KC_F9, 	  KC_F10,    KC_F11,    KC_F12, \
-	KC_TRNS,   KC_TRNS,	  KC_TRNS, 	 KC_TRNS, 	KC_NO,     KC_NO,					       KC_TRNS,  KC_PGUP, 	KC_UP, 	  KC_PGDN,   KC_HOME,   KC_NO, \
-	KC_TRNS,   KC_TRNS,   KC_LSFT,   KC_LALT,   KC_LGUI,   KC__MUTE,					   KC_NO,    KC_LEFT,   KC_DOWN,  KC_RGHT,   KC_END,    KC_RCTL, \
-	KC_TRNS,   KC_TRNS,   KC_CUT,    KC_COPY,   KC_PSTE,   KC_PSTE,     KC_NO,   KC_DEL,   KC_NO,    KC_NO,     KC_NO,    KC_NO,     KC_NO,     KC_NO, \
+	F1_ESC,    KC_F2, 	  KC_F3, 	 KC_F4, 	KC_F5, 	   KC_F6, 						   KC_F7, 	  KC_F8, 	 KC_F9, 	 KC_F10,     KC_F11,    KC_F12, \
+	KC_TRNS,   KC_TRNS,	  KC_TRNS, 	 KC_TRNS, 	KC_NO,     KC_NO,					       KC_TRNS,   KC_PGUP, 	 KC_UP, 	 KC_PGDN,    KC_HOME,   KC_NO, \
+	KC_TRNS,   KC_TRNS,   KC_LSFT,   KC_LALT,   KC_LGUI,   KC__MUTE,					   KC_NO,     LEFT_CMD,  DOWN_ALT,   RIGHT_SFT,  END_CTL,   KC_RCTL, \
+	KC_TRNS,   KC_TRNS,   KC_CUT,    KC_COPY,   KC_PSTE,   KC_PSTE,     KC_NO,   KC_DEL,   KC_NO,     KC_NO,     KC_NO,      KC_NO,      KC_NO,     KC_NO, \
 							    KC_TRNS,    KC_TRNS,  KC_TRNS,   KC_TRNS, 			 KC_TRNS,   KC_TRNS,   KC_TRNS,   KC_UNDO \
  ),
  /* RAISE
