@@ -228,13 +228,15 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   }
 
   switch (keycode) {
-    case TG(1):
+    case TT(1):
       if (record->event.pressed) {
+        // Only enable _DEFAULT and _LOWER at any given time
         layer_off(_RAISE);
       }
       break;
-    case TG(2):
+    case TT(2):
       if (record->event.pressed) {
+        // Only enable _DEFAULT and _RAISE at any given time
         layer_off(_LOWER);
       }
       break;
