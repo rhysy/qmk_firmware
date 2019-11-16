@@ -35,8 +35,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //#define TAPPING_FORCE_HOLD // WARNING: Breaks TT (tap toggle) layer change key if uncommented
 
 #undef TAPPING_TERM
-#define TAPPING_TERM 350         // How long before a tap becomes a hold, if set above 500, a key tapped during the tapping term will turn it into a hold too
-#define TAPPING_TOGGLE 2         // Number of times to tap to actuate secondary key function
+#define TAPPING_TERM 200        // How long before a tap becomes a hold, if set above 500, a key tapped during the tapping term will turn it into a hold too
+#define TAPPING_TOGGLE 2        // Number of times to tap to actuate secondary key function
 #undef PERMISSIVE_HOLD          // Makes tap and hold keys trigger the hold if another key is pressed before releasing, even if it hasn't hit the TAPPING_TERM
 #define IGNORE_MOD_TAP_INTERRUPT // Makes it possible to do rolling combos (zx) with keys that convert to other keys on hold, by enforcing the TAPPING_TERM for both keys.
 
