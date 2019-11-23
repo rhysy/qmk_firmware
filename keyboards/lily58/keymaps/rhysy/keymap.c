@@ -61,19 +61,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                   `----------------------------'           '------''--------------------'
  */
 #define SFT_CAPS   TD(TD_SHIFT_CAPS)
-#define F_CMD      GUI_T(KC_F)
-#define J_CMD      GUI_T(KC_J)
-#define D_ALT      ALT_T(KC_D)
-#define K_ALT      ALT_T(KC_K)
-#define S_SFT      SFT_T(KC_S)
-#define L_SFT      SFT_T(KC_L)
+#define F_CMD      LGUI_T(KC_F)
+#define J_CMD      RGUI_T(KC_J)
+#define D_ALT      LALT_T(KC_D)
+#define K_ALT      RALT_T(KC_K)
+#define S_SFT      LSFT_T(KC_S)
+#define L_SFT      RSFT_T(KC_L)
 #define ESC_GRV    TD(TD_ESC_GRV)
-#define QUOT_CTRL  CTL_T(KC_QUOT)
-#define A_CTL      CTL_T(KC_A)
-#define SCLN_CTL      CTL_T(KC_SCLN)
+#define QUOT_CTRL  RCTL_T(KC_QUOT)
+#define A_CTL      LCTL_T(KC_A)
+#define SCLN_CTL   RCTL_T(KC_SCLN)
 
  [_QWERTY] = LAYOUT(
-	ESC_GRV,   KC_1,   KC_2,   KC_3,   KC_4,    KC_5,                  		KC_6,   KC_7,   KC_8,    KC_9,   KC_0,     KC_MINS, \
+	KC_GESC,   KC_1,   KC_2,   KC_3,   KC_4,    KC_5,                  		KC_6,   KC_7,   KC_8,    KC_9,   KC_0,     KC_MINS, \
 	KC_TAB,   KC_Q,   KC_W,   KC_E,   KC_R,    KC_T, 						KC_Y, 	KC_U, 	KC_I, 	 KC_O, 	 KC_P, 	   KC_BSLS, \
 	KC_LCTL,  A_CTL,  S_SFT,  D_ALT,  F_CMD,   KC_G, 						KC_H, 	J_CMD, 	K_ALT, 	 L_SFT,  SCLN_CTL, QUOT_CTRL, \
     SFT_CAPS, KC_Z,   KC_X,   KC_C,   KC_V,    KC_B,   KC_LBRC,  KC_RBRC, 	KC_N, 	KC_M, 	KC_COMM, KC_DOT, KC_SLSH,  KC_RSFT, \
@@ -96,8 +96,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 #define F1_ESC       TD(TD_F1_ESC)
 #define LEFT_CMD     GUI_T(KC_LEFT)
 #define DOWN_ALT     ALT_T(KC_DOWN)
-#define RIGHT_SFT    SFT_T(KC_RGHT)
-#define END_CTL      CTL_T(KC_END)
+#define RIGHT_SFT    RSFT_T(KC_RGHT)
+#define END_CTL      RCTL_T(KC_END)
 
  [_LOWER] = LAYOUT(
 	F1_ESC,    KC_F2, 	  KC_F3, 	 KC_F4, 	KC_F5, 	   KC_F6, 						   KC_F7, 	  KC_F8, 	 KC_F9, 	 KC_F10,     KC_F11,    KC_F12, \
