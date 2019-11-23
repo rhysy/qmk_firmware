@@ -295,10 +295,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
         if( ! ctl ) return true;
 
-        // Send KC_GRAVE when CTRL + KC_GESC is pressed
+        // Send KC_GRAVE when CTRL + KC_GESC is pressed. Send the KC_GRAVE solo, then re-register CTRL after.
         unregister_mods( ctl );
         register_code( KC_GRAVE );
-//        register_mods( gui );
+        register_mods( ctl );
         return false;
       }
 
