@@ -217,6 +217,9 @@ void iota_gfx_task_user(void) {
 }
 #endif//SSD1306OLED
 
+// Variable to signify a CTRL modifier was pressed.
+static uint8_t ctl = 0;
+
 // Log keys
 // Deactivate other layers when activating a new layer.
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
@@ -283,6 +286,29 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             eeconfig_update_user(user_config.raw);
         }
         return true;
+    case KC_GESC : {
+      if( record -> event.pressed ) {
+        const uint8_t mods = get_mods();
+        if( ! mods ) return true;
+
+        ctl = mods & ( MOD_BIT( KC_LCTL ) | MOD_BIT( KC_RCTL ) );
+
+        if( ! ctl ) return true;
+
+        // Send KC_GRAVE when CTRL + KC_GESC is pressed
+        unregister_mods( ctl );
+        register_code( KC_GRAVE );
+//        register_mods( gui );
+        return false;
+      }
+
+      if( ! ctl ) return true;
+
+      unregister_code( KC_GRAVE );
+      ctl = 0;
+
+      return false;
+    }
   }
   return true;
 }
