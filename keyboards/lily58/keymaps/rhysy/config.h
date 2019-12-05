@@ -40,13 +40,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #undef PERMISSIVE_HOLD          // Makes tap and hold keys trigger the hold if another key is pressed before releasing, even if it hasn't hit the TAPPING_TERM
 #define IGNORE_MOD_TAP_INTERRUPT // Makes it possible to do rolling combos (zx) with keys that convert to other keys on hold, by enforcing the TAPPING_TERM for both keys.
 
-//                  ====== COMBO Feature ======
+//  ================== One Shot Modifier Feature ==================
+#define ONESHOT_TAP_TOGGLE 2  /* Tapping this number of times holds the key until tapped once again. */
+#define ONESHOT_TIMEOUT 5000  /* Time (in ms) before the one shot key is released */
+
+//  ================== COMBO Feature ==================
 // * Hit multiple keys at once and produce a different effect. Ex. A && S == ESC
 // * Must set COMBO_ENABLE = yes in rules.mk to activate.
 //#define COMBO_COUNT 1     // Number of combos defined
 //#define COMBO_TERM 300    // Override TAPPING_TERM for COMBOS if defined
 
-// Underglow
+//  ================== Underglow ==================
 #undef RGBLED_NUM
 #define RGBLED_NUM 24
 //#define RGBLIGHT_SPLIT            // Implicitly defined when RGBLED_SPLIT is defined
