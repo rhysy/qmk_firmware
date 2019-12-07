@@ -1,5 +1,9 @@
 #include QMK_KEYBOARD_H
 
+#define _QWERTY 0
+#define _FUNC   1
+#define _RGB    2
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
  /* DEFAULT
@@ -17,7 +21,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 #define CTRL_CAPS   LCTL_T(KC_CAPS)
 
-  [0] = LAYOUT_65_ansi(
+  [_QWERTY] = LAYOUT_65_ansi(
     KC_ESC,   KC_1,   KC_2,   KC_3,   KC_4,   KC_5,   KC_6,   KC_7,   KC_8,   KC_9,   KC_0,   KC_MINS,  KC_EQL,  KC_BSPC,   KC_GRV,  \
     KC_TAB,     KC_Q,   KC_W,   KC_E,   KC_R,   KC_T,   KC_Y,   KC_U,   KC_I,   KC_O,   KC_P,   KC_LBRC,  KC_RBRC, KC_BSLS, KC_DEL,  \
     CTRL_CAPS,    KC_A,   KC_S,   KC_D,   KC_F,   KC_G,   KC_H,   KC_J,   KC_K,   KC_L,   KC_SCLN, KC_QUOT,     KC_ENT,     KC_PGUP, \
@@ -25,13 +29,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_LCTL,  KC_LALT,  KC_LGUI,                    KC_SPC,                   KC_RGUI,  OSL(1),  KC_RCTL, KC_LEFT, KC_DOWN, KC_RGHT
    ),
 
- /* LAYER 1
+ /* FUNCTION LAYER
   * ,-----,-----,-----,-----,-----,-----,-----,-----,-----,-----,-----,-----,-----,----------,-----.
   * |     |  F1 |  F2 |  F3 |  F4 |  F5 |  F6 |  F7 |  F8 |  F9 | F10 | F11 | F12 |   DEL    |     |
   * |-----'--,--'--,--'--,--'--,--'--,--'--,--'--,--'--,--'--,--'--,--'--,--'--,--'--,-------+-----|
-  * |        |RGBTG| MD+ | HUE+| HUE-| SAT+| SAT-| BRT+| BRT-|     |PTSRN|SC LK|PAUSE| RESET |     |
+  * |        |     |     |     |     |     |     |     |     |     |     |     |     |       |     |
   * |--------'-,---'-,---'-,---'-,---'-,---'-,---'-,---'-,---'-,---'-,---'-,---'-,---'-------+-----|
-  * |          | SPD+| SPD-|     |     |     |     |     |     |     |     |     | EEPROM RST| PLAY|
+  * |          |     |     |     |     |     |     |     |     |     |     |     |           | PLAY|
   * |----------'-,---'-,---'-,---'-,---'-,---'-,---'-,---'-,---'-,---'-,---'-,---'-----,-----+-----|
   * |            |     |     |     |     |     |     |     |     |     |     |         | VOL+| MUTE|
   * |------,-----',----'-,---'-----'-----'-----'-----'-----'---,-'---,-'---,-'---,-----'-----+-----|
@@ -39,23 +43,23 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   * '------'------'------'-------------------------------------'-----'-----'-----'-----'-----'-----'
  */
 
-  [1] = LAYOUT_65_ansi(
+  [_FUNC] = LAYOUT_65_ansi(
     KC_TRNS,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,    KC_DEL,   TO(2), \
-    KC_TRNS,    RGB_TOG, RGB_MOD, RGB_HUI, RGB_HUD, RGB_SAI, RGB_SAD, RGB_VAI, RGB_VAD, KC_TRNS, KC_PSCR, KC_SLCK, KC_PAUS,  RESET,   KC_TRNS, \
-    KC_TRNS,      RGB_SPI, RGB_SPD, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,     EEP_RST,     KC_MPLY, \
+    KC_TRNS,    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,  KC_TRNS, \
+    KC_TRNS,      KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,     KC_TRNS,     KC_MPLY, \
     KC_TRNS,        KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,    KC_TRNS,    KC_VOLU, KC_MUTE, \
     KC_TRNS,  KC_TRNS,  KC_TRNS,                        KC_TRNS,                         KC_TRNS, KC_TRNS, KC_TRNS, KC_MPRV, KC_VOLD, KC_MNXT
     ),
 
 
 
- /* LAYER 1
+ /* RGB LAYER
   * ,-----,-----,-----,-----,-----,-----,-----,-----,-----,-----,-----,-----,-----,----------,-----.
   * |     |  F1 |  F2 |  F3 |  F4 |  F5 |  F6 |  F7 |  F8 |  F9 | F10 | F11 | F12 |   DEL    |     |
   * |-----'--,--'--,--'--,--'--,--'--,--'--,--'--,--'--,--'--,--'--,--'--,--'--,--'--,-------+-----|
-  * |        |RGBTG| MD+ | HUE+| HUE-| SAT+| SAT-| BRT+| BRT-|     |PTSRN|SC LK|PAUSE| RESET |     |
+  * |        |RGBTG| MD+ | HUE+| HUE-| SAT+| SAT-| BRT+| BRT-|     |     |     |     |       |     |
   * |--------'-,---'-,---'-,---'-,---'-,---'-,---'-,---'-,---'-,---'-,---'-,---'-,---'-------+-----|
-  * |          | SPD+| SPD-|     |     |     |     |     |     |     |     |     | EEPROM RST| PLAY|
+  * |          | SPD+| SPD-|     |     |     |     |     |     |     |     |     |           | PLAY|
   * |----------'-,---'-,---'-,---'-,---'-,---'-,---'-,---'-,---'-,---'-,---'-,---'-----,-----+-----|
   * |            |     |     |     |     |     |     |     |     |     |     |         | VOL+| MUTE|
   * |------,-----',----'-,---'-----'-----'-----'-----'-----'---,-'---,-'---,-'---,-----'-----+-----|
@@ -63,10 +67,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   * '------'------'------'-------------------------------------'-----'-----'-----'-----'-----'-----'
  */
 
-  [2] = LAYOUT_65_ansi(
+  [_RGB] = LAYOUT_65_ansi(
     KC_TRNS,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,    KC_DEL,   TO(0), \
-    KC_TRNS,    RGB_TOG, RGB_MOD, RGB_HUI, RGB_HUD, RGB_SAI, RGB_SAD, RGB_VAI, RGB_VAD, KC_TRNS, KC_PSCR, KC_SLCK, KC_PAUS,  RESET,   KC_TRNS, \
-    KC_TRNS,      RGB_SPI, RGB_SPD, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,     EEP_RST,     KC_MPLY, \
+    KC_TRNS,    RGB_TOG, RGB_MOD, RGB_HUI, RGB_HUD, RGB_SAI, RGB_SAD, RGB_VAI, RGB_VAD, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,  KC_TRNS, \
+    KC_TRNS,      RGB_SPI, RGB_SPD, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,     KC_TRNS,     KC_MPLY, \
     KC_TRNS,        KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,    KC_TRNS,    KC_VOLU, KC_MUTE, \
     KC_TRNS,  KC_TRNS,  KC_TRNS,                        KC_TRNS,                         KC_TRNS, KC_TRNS, KC_TRNS, KC_MPRV, KC_VOLD, KC_MNXT
     )
@@ -120,15 +124,15 @@ void rgb_matrix_indicators_user(void) {
             rgb_matrix_set_color(8, 0xFF, 0xFF, 0xFF);
         } else {
             switch(biton32(layer_state)) {
-                case 0:
+                case _QWERTY:
                     // Default layer will use whatever is in EEPROM
                     rgb_matrix_mode_noeeprom(rgb_current_mode);
                     break;
-                case 1:
+                case _FUNC:
                     rgb_matrix_mode_noeeprom(RGB_MATRIX_SOLID_COLOR);
                     rgb_matrix_layer_helper(HSV_CYAN);
                     break;
-                case 2: // RGB mod layer
+                case _RGB: // RGB mod layer
                     if (last_layer_state != 2) {
                         // Set layer to default layer's profile to allow for modification
                         rgb_matrix_mode_noeeprom(rgb_current_mode);
