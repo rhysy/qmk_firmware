@@ -4,4 +4,4 @@
 #define ONESHOT_TIMEOUT 5000  /* Time (in ms) before the one shot key is released */
 
 #undef  RGB_MATRIX_MAXIMUM_BRIGHTNESS
-#define RGB_MATRIX_MAXIMUM_BRIGHTNESS 220
+//#define RGB_MATRIX_MAXIMUM_BRIGHTNESS 220
