@@ -4,6 +4,11 @@
 #define _FUNC   1
 #define _RGB    2
 
+enum custom_keycode {
+    CP_SRN = SAFE_RANGE,    // Copy screen to clipboard
+    SAV_SRN                 // Save screen to file
+};
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
  /* DEFAULT
@@ -35,9 +40,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   * |-----'--,--'--,--'--,--'--,--'--,--'--,--'--,--'--,--'--,--'--,--'--,--'--,--'--,-------+-----|
   * |        |     |     |     |     |     |     |     |     |     | PLAY|     |     |       |     |
   * |--------'-,---'-,---'-,---'-,---'-,---'-,---'-,---'-,---'-,---'-,---'-,---'-,---'-------+-----|
-  * |          |     |     |     |     |     |     |     |     |     |     |     |           |     |
+  * |          |     |SVSRN|     |     |     |     |     |     |     |     |     |           |     |
   * |----------'-,---'-,---'-,---'-,---'-,---'-,---'-,---'-,---'-,---'-,---'-,---'-----,-----+-----|
-  * |            |     |     |     |     |     |     | MUTE|     |     |     |         | VOL+|     |
+  * |            |     |     |CPSRN|     |     |     | MUTE|     |     |     |         | VOL+|     |
   * |------,-----',----'-,---'-----'-----'-----'-----'-----'---,-'---,-'---,-'---,-----'-----+-----|
   * |      |      |      |                                     |     |     |     | PREV| VOL-| MEXT|
   * '------'------'------'-------------------------------------'-----'-----'-----'-----'-----'-----'
@@ -46,8 +51,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_FUNC] = LAYOUT_65_ansi(
     KC_TRNS,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,    KC_DEL,   TO(2), \
     KC_TRNS,    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_MPLY, KC_TRNS, KC_TRNS, KC_TRNS,  KC_TRNS, \
-    KC_TRNS,      KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,     KC_TRNS,     KC_TRNS, \
-    KC_TRNS,        KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_MUTE, KC_TRNS, KC_TRNS, KC_TRNS,    KC_TRNS,    KC_VOLU, KC_TRNS, \
+    KC_TRNS,      KC_TRNS, SAV_SRN, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,     KC_TRNS,     KC_TRNS, \
+    KC_TRNS,        KC_TRNS, KC_TRNS, CP_SRN, KC_TRNS, KC_TRNS, KC_TRNS, KC_MUTE, KC_TRNS, KC_TRNS, KC_TRNS,    KC_TRNS,    KC_VOLU, KC_TRNS, \
     KC_TRNS,  KC_TRNS,  KC_TRNS,                        KC_TRNS,                         KC_TRNS, KC_TRNS, KC_TRNS, KC_MPRV, KC_VOLD, KC_MNXT
     ),
 
@@ -90,6 +95,7 @@ void matrix_init_user(void) {
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       switch (keycode) {
             case RGB_MOD:
+            case RGB_RMOD:
             case RGB_HUI:
             case RGB_HUD:
             case RGB_SAI:
@@ -101,6 +107,17 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                     rgb_current_mode = rgb_matrix_config.mode;
                     current_hsv = rgb_matrix_config.hsv;
                 }
+                return true;
+            case CP_SRN:
+                if (record->event.pressed) {
+                    SEND_STRING(SS_LGUI(SS_LCTRL(SS_LSFT("4"))));
+                }
+                return false;
+            case SAV_SRN:
+                if (record->event.pressed) {
+                    SEND_STRING(SS_LGUI(SS_LSFT("4")));
+                }
+                return false;
       }
       return true;
 }
