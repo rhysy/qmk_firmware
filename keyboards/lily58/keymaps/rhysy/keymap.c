@@ -16,23 +16,6 @@ extern keymap_config_t keymap_config;
 extern rgblight_config_t rgblight_config;
 #endif
 
-//Tap Dance Declarations
-enum {
-  TD_ESC_GRV = 0,
-  TD_SHIFT_CAPS,
-  TD_F1_ESC
-};
-
-// Tap Dance Definitions
-qk_tap_dance_action_t tap_dance_actions[] = {
-  // Tap once for Dash, twice for Equals
-  [TD_ESC_GRV]  = ACTION_TAP_DANCE_DOUBLE(KC_ESC, KC_GRV),
-  // Tap once for Shift, twice for Caps Lock
-  [TD_SHIFT_CAPS]  = ACTION_TAP_DANCE_DOUBLE(KC_LSFT, KC_CAPS),
-  // Tap once for F1, twice for Tab
-  [TD_F1_ESC]  = ACTION_TAP_DANCE_DOUBLE(KC_F1, KC_ESC)
-};
-
 extern uint8_t is_master;
 
 enum custom_keycodes {
@@ -60,14 +43,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                   |      |      |      |/       /         \      \ |      |      |      |
  *                   `----------------------------'           '------''--------------------'
  */
-#define SFT_CAPS   TD(TD_SHIFT_CAPS)
 #define F_CMD      LGUI_T(KC_F)
 #define J_CMD      RGUI_T(KC_J)
 #define D_ALT      LALT_T(KC_D)
 #define K_ALT      RALT_T(KC_K)
 #define S_SFT      LSFT_T(KC_S)
 #define L_SFT      RSFT_T(KC_L)
-#define ESC_GRV    TD(TD_ESC_GRV)
 #define QUOT_CTRL  RCTL_T(KC_QUOT)
 #define A_CTL      LCTL_T(KC_A)
 #define SCLN_CTL   RCTL_T(KC_SCLN)
@@ -76,7 +57,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	KC_GESC,  KC_1,   KC_2,   KC_3,   KC_4,    KC_5,                  		KC_6,   KC_7,   KC_8,    KC_9,   KC_0,     KC_MINS, \
 	KC_TAB,   KC_Q,   KC_W,   KC_E,   KC_R,    KC_T, 						KC_Y, 	KC_U, 	KC_I, 	 KC_O, 	 KC_P, 	   KC_BSLS, \
 	KC_LCTL,  A_CTL,  S_SFT,  D_ALT,  F_CMD,   KC_G, 						KC_H, 	J_CMD, 	K_ALT, 	 L_SFT,  SCLN_CTL, QUOT_CTRL, \
-    SFT_CAPS, KC_Z,   KC_X,   KC_C,   KC_V,    KC_B,   KC_LBRC,  KC_RBRC, 	KC_N, 	KC_M, 	KC_COMM, KC_DOT, KC_SLSH,  KC_RSFT, \
+    KC_LSFT,  KC_Z,   KC_X,   KC_C,   KC_V,    KC_B,   KC_LBRC,  KC_RBRC, 	KC_N, 	KC_M, 	KC_COMM, KC_DOT, KC_SLSH,  KC_RSFT, \
    						KC_LALT, KC_LGUI, OSL(1), KC_ENT, 			KC_SPC, KC_BSPC, OSL(2), KC_EQL \
  ),
 /* LOWER
@@ -93,14 +74,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                   |      |      |      |/       /         \      \ |      |      |      |
  *                   `----------------------------'           '------''--------------------'
  */
-#define F1_ESC       TD(TD_F1_ESC)
 #define LEFT_CMD     GUI_T(KC_LEFT)
 #define DOWN_ALT     ALT_T(KC_DOWN)
 #define RIGHT_SFT    RSFT_T(KC_RGHT)
 #define END_CTL      RCTL_T(KC_END)
 
  [_LOWER] = LAYOUT(
-	F1_ESC,    KC_F2, 	  KC_F3, 	 KC_F4, 	KC_F5, 	   KC_F6, 						   KC_F7, 	  KC_F8, 	 KC_F9, 	 KC_F10,     KC_F11,    KC_F12, \
+	KC_ESC,    KC_F2, 	  KC_F3, 	 KC_F4, 	KC_F5, 	   KC_F6, 						   KC_F7, 	  KC_F8, 	 KC_F9, 	 KC_F10,     KC_F11,    KC_F12, \
 	KC_TRNS,   KC_TRNS,	  KC_TRNS, 	 KC_TRNS, 	KC_NO,     KC_NO,					       KC_TRNS,   KC_PGUP, 	 KC_UP, 	 KC_PGDN,    KC_HOME,   KC_NO, \
 	KC_TRNS,   KC_TRNS,   KC_LSFT,   KC_LALT,   KC_LGUI,   KC__MUTE,					   KC_EQL,    LEFT_CMD,  DOWN_ALT,   RIGHT_SFT,  END_CTL,   KC_RCTL, \
 	KC_TRNS,   KC_TRNS,   KC_CUT,    KC_COPY,   KC_PSTE,   KC_PSTE,     KC_NO,   KC_DEL,   KC_NO,     KC_NO,     KC_NO,      KC_NO,      KC_NO,     KC_NO, \
@@ -286,29 +266,29 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             eeconfig_update_user(user_config.raw);
         }
         return true;
-    case KC_GESC : {
-      if( record -> event.pressed ) {
-        const uint8_t mods = get_mods();
-        if( ! mods ) return true;
+    case KC_GESC: {
+        if( record -> event.pressed ) {
+            const uint8_t mods = get_mods();
+            if( ! mods ) return true;
 
-        ctl = mods & ( MOD_BIT( KC_LCTL ) | MOD_BIT( KC_RCTL ) );
+            ctl = mods & ( MOD_BIT( KC_LCTL ) | MOD_BIT( KC_RCTL ) );
 
-        if( ! ctl ) return true;
+            if( ! ctl ) return true;
 
-        // Send KC_GRAVE when CTRL + KC_GESC is pressed. Send the KC_GRAVE solo, then re-register CTRL after.
-        unregister_mods( ctl );
-        register_code( KC_GRAVE );
-        register_mods( ctl );
-        return false;
-      }
+            // Send KC_GRAVE when CTRL + KC_GESC is pressed. Send the KC_GRAVE solo, then re-register CTRL after.
+            unregister_mods( ctl );
+            register_code( KC_GRAVE );
+            register_mods( ctl );
+            return false;
+        }
 
-      if( ! ctl ) return true;
+            if( ! ctl ) return true;
 
-      unregister_code( KC_GRAVE );
-      ctl = 0;
+            unregister_code( KC_GRAVE );
+            ctl = 0;
 
-      return false;
-    }
+            return false;
+        }
   }
   return true;
 }
