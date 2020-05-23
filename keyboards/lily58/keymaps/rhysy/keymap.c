@@ -111,6 +111,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 
 int RGB_current_mode;
+bool is_caps_lock_active = false;
 
 // EEPROM support for retaining RGB mode after power cycle. QMK bug workaround...
 typedef union {
@@ -151,7 +152,7 @@ void keyboard_post_init_user(void) {
 
 // When add source files to SRC in rules.mk, you can use functions.
 const char *read_layer_state(void);
-const char *read_logo(void);
+const char *read_logo(bool);
 void set_keylog(uint16_t keycode, keyrecord_t *record);
 const char *read_host_led_state(void);
 const char *read_rgb_info(void);
@@ -178,7 +179,7 @@ void matrix_render_user(struct CharacterMatrix *matrix) {
     //matrix_write_ln(matrix, read_mode_icon(keymap_config.swap_lalt_lgui));
     //matrix_write_ln(matrix, read_timelog());
   } else {
-    matrix_write(matrix, read_logo());
+    matrix_write(matrix, read_logo(is_caps_lock_active));
   }
 }
 
@@ -294,7 +295,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 }
 
 void update_led(void) {
-    if (host_keyboard_leds() & (1<<USB_LED_CAPS_LOCK)) {
+    if (is_caps_lock_active) {
         rgblight_mode(15);
         rgblight_setrgb_red();
     } else {
@@ -326,3 +327,28 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 void led_set_user(uint8_t usb_led) {
     update_led();
 }
+
+
+//------ Combos -------------
+enum combo_events {
+  LEFT_RIGHT_BRACKET
+};
+
+const uint16_t PROGMEM caps_lock_combo[] = {KC_LBRC, KC_RBRC, COMBO_END};
+
+combo_t key_combos[COMBO_COUNT] = {
+    [LEFT_RIGHT_BRACKET] = COMBO_ACTION(caps_lock_combo)
+};
+
+void process_combo_event(uint8_t combo_index, bool pressed) {
+    switch(combo_index) {
+        case LEFT_RIGHT_BRACKET:
+            if (pressed) {
+                is_caps_lock_active = !is_caps_lock_active;
+                tap_code(KC_CAPS);
+                update_led();
+            }
+            break;
+  }
+}
+//---------------------------

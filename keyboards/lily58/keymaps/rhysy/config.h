@@ -47,7 +47,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //  ================== COMBO Feature ==================
 // * Hit multiple keys at once and produce a different effect. Ex. A && S == ESC
 // * Must set COMBO_ENABLE = yes in rules.mk to activate.
-//#define COMBO_COUNT 1     // Number of combos defined
+#define COMBO_COUNT 1     // Number of combos defined
 //#define COMBO_TERM 300    // Override TAPPING_TERM for COMBOS if defined
 
 //  ================== Underglow ==================
