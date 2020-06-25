@@ -62,7 +62,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  ),
 /* LOWER
  * ,-----------------------------------------.                    ,-----------------------------------------.
- * |F1|ESC|  F2  |  F3  |  F4  |  F5  |  F6  |                    |  F7  |  F8  |  F9  | F10  | F11  | F12  |
+ * |  F1  |  F2  |  F3  |  F4  |  F5  |  F6  |                    |  F7  |  F8  |  F9  | F10  | F11  | F12  |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
  * |      |      |      |      | N/A  | N/A  |                    |      |PG UP |  UP  |PG DWN| HOME | N/A  |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
@@ -80,7 +80,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 #define END_CTL      RCTL_T(KC_END)
 
  [_LOWER] = LAYOUT(
-	KC_ESC,    KC_F2, 	  KC_F3, 	 KC_F4, 	KC_F5, 	   KC_F6, 						   KC_F7, 	  KC_F8, 	 KC_F9, 	 KC_F10,     KC_F11,    KC_F12, \
+	KC_F1,    KC_F2, 	  KC_F3, 	 KC_F4, 	KC_F5, 	   KC_F6, 						   KC_F7, 	  KC_F8, 	 KC_F9, 	 KC_F10,     KC_F11,    KC_F12, \
 	KC_TRNS,   KC_TRNS,	  KC_TRNS, 	 KC_TRNS, 	KC_NO,     KC_NO,					       KC_TRNS,   KC_PGUP, 	 KC_UP, 	 KC_PGDN,    KC_HOME,   KC_NO, \
 	KC_TRNS,   KC_TRNS,   KC_LSFT,   KC_LALT,   KC_LGUI,   KC__MUTE,					   KC_EQL,    LEFT_CMD,  DOWN_ALT,   RIGHT_SFT,  END_CTL,   KC_RCTL, \
 	KC_TRNS,   KC_TRNS,   KC_CUT,    KC_COPY,   KC_PSTE,   KC_PSTE,     KC_NO,   KC_DEL,   KC_NO,     KC_NO,     KC_NO,      KC_NO,      KC_NO,     KC_NO, \
