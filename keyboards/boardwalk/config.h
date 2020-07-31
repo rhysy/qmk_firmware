@@ -82,3 +82,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define RGBLIGHT_HUE_STEP 12 // units to step when in/decreasing hue
 #define RGBLIGHT_SAT_STEP 25 // units to step when in/decresing saturation
 #define RGBLIGHT_VAL_STEP 12 // units to step when in/decreasing value (brightness)
+
+//  ================== One Shot Modifier Feature ==================
+#define ONESHOT_TAP_TOGGLE 2  /* Tapping this number of times holds the key until tapped once again. */
+#define ONESHOT_TIMEOUT 5000  /* Time (in ms) before the one shot key is released */
