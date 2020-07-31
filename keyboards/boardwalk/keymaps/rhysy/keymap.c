@@ -72,9 +72,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * |--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+-----------------|
      * |        |        |        |        |        |        | PREV   | NEXT   |        |        |        |        | PLAY   |        |
      * |--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+-----------------+--------|
-     * |        |        |        |        |        |        |        |        |        |        |        |        |        | '      |
+     * |        | RGB_TOG| SAT+   | HUE+   | BRT+   |        |        |        |        |        |        |        |        |        |
      * |--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------------------------+--------|
-     * |        |        |        |        |        |        |        |        |        |        |        |        |        | RESET  |
+     * |        | RGB_MOD| SAT-   | HUE-   | BRT-   |        |        |        |        |        |        |        |        | RESET  |
      * |--------+--------+--------+--------+--------+-----------------+--------+--------+--------+-----------------+--------+--------|
      * |        |        |        |        |        |        |        |        |        |        |        |        |        |        |
      * '-----------------------------------------------------------------------------------------------------------------------------'
@@ -86,8 +86,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_HI] = LAYOUT_ortho_5x14(
         KC_GRV,  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, VOL_UP,  VOL_DN,  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
         KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_MPRV, KC_MNXT, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_MPLY, KC_TRNS,
-        KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
-        KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, RESET,
+        KC_TRNS, RGB_TOG, RGB_SAI, RGB_HUI, RGB_VAI, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+        KC_TRNS, RGB_MOD, RGB_SAD, RGB_HUD, RGB_VAD, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, RESET,
         KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
     )
 
